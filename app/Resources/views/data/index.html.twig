@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Data list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Url</th>
+                <th>Moztitle</th>
+                <th>Mozurl</th>
+                <th>Mozexternallinks</th>
+                <th>Mozrank</th>
+                <th>Mozsubdomainmozrank</th>
+                <th>Mozhttpstatuscode</th>
+                <th>Mozpageauthority</th>
+                <th>Mozdomainauthority</th>
+                <th>Mozlinks</th>
+                <th>Userid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for datum in datas %}
+            <tr>
+                <td><a href="{{ path('data_show', { 'id': datum.id }) }}">{{ datum.id }}</a></td>
+                <td>{{ datum.url }}</td>
+                <td>{{ datum.mozTitle }}</td>
+                <td>{{ datum.mozUrl }}</td>
+                <td>{{ datum.mozExternalLinks }}</td>
+                <td>{{ datum.mozRank }}</td>
+                <td>{{ datum.mozSubdomainMozRank }}</td>
+                <td>{{ datum.mozHttpStatusCode }}</td>
+                <td>{{ datum.mozPageAuthority }}</td>
+                <td>{{ datum.mozDomainAuthority }}</td>
+                <td>{{ datum.mozLinks }}</td>
+                <td>{{ datum.userId }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('data_show', { 'id': datum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('data_edit', { 'id': datum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('data_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

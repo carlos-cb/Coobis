@@ -1,0 +1,17 @@
+CoobisBundle\Entity\Category:
+    type: entity
+    table: null
+    repositoryClass: CoobisBundle\Repository\CategoryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        categoryName:
+            type: string
+            length: 255
+            nullable: true
+            column: category_name
+    lifecycleCallbacks: {  }

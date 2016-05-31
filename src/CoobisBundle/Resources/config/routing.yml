@@ -1,0 +1,15 @@
+coobis_user:
+    resource: "@CoobisBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+coobis_homepage:
+    path:     /
+    defaults: { _controller: CoobisBundle:Default:index }
+
+coobis_category:
+    resource: "@CoobisBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+coobis_data:
+    resource: "@CoobisBundle/Resources/config/routing/data.yml"
+    prefix:   /data

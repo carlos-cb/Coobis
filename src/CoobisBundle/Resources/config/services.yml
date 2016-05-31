@@ -1,0 +1,4 @@
+services:
+#    coobis.example:
+#        class: CoobisBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

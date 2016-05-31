@@ -1,0 +1,20 @@
+CoobisBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: CoobisBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 255
+            nullable: true
+            unique: true
+        password:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

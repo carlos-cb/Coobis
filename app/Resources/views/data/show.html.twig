@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Data</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ datum.id }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ datum.url }}</td>
+            </tr>
+            <tr>
+                <th>Moztitle</th>
+                <td>{{ datum.mozTitle }}</td>
+            </tr>
+            <tr>
+                <th>Mozurl</th>
+                <td>{{ datum.mozUrl }}</td>
+            </tr>
+            <tr>
+                <th>Mozexternallinks</th>
+                <td>{{ datum.mozExternalLinks }}</td>
+            </tr>
+            <tr>
+                <th>Mozrank</th>
+                <td>{{ datum.mozRank }}</td>
+            </tr>
+            <tr>
+                <th>Mozsubdomainmozrank</th>
+                <td>{{ datum.mozSubdomainMozRank }}</td>
+            </tr>
+            <tr>
+                <th>Mozhttpstatuscode</th>
+                <td>{{ datum.mozHttpStatusCode }}</td>
+            </tr>
+            <tr>
+                <th>Mozpageauthority</th>
+                <td>{{ datum.mozPageAuthority }}</td>
+            </tr>
+            <tr>
+                <th>Mozdomainauthority</th>
+                <td>{{ datum.mozDomainAuthority }}</td>
+            </tr>
+            <tr>
+                <th>Mozlinks</th>
+                <td>{{ datum.mozLinks }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ datum.userId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('data_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('data_edit', { 'id': datum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

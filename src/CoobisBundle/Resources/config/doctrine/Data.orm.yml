@@ -1,0 +1,54 @@
+CoobisBundle\Entity\Data:
+    type: entity
+    table: null
+    repositoryClass: CoobisBundle\Repository\DataRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        url:
+            type: string
+            length: 255
+        mozTitle:
+            type: string
+            length: 255
+            column: moz_title
+        mozUrl:
+            type: string
+            length: 255
+            column: moz_url
+        mozExternalLinks:
+            type: string
+            length: 255
+            column: moz_external_links
+        mozRank:
+            type: string
+            length: 255
+            column: moz_rank
+        mozSubdomainMozRank:
+            type: string
+            length: 255
+            column: moz_subdomain_mozRank
+        mozHttpStatusCode:
+            type: string
+            length: 255
+            column: moz_http_status_code
+        mozPageAuthority:
+            type: string
+            length: 255
+            column: moz_page_authority
+        mozDomainAuthority:
+            type: string
+            length: 255
+            column: moz_domain_authority
+        mozLinks:
+            type: string
+            length: 255
+            column: moz_links
+        userId:
+            type: integer
+            column: user_id
+    lifecycleCallbacks: {  }
