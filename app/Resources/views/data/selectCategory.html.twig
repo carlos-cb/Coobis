@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Select Category</h1>
+
+	<div class="row">
+		{% for category in categories %}
+			<div class='col-md-2'>
+				<a href='' class='btn btn-primary btn-lg' role='button'>{{ category.categoryName }}</a>
+			</div>
+		{% endfor %}
+	</div>
+
+
+    <ul>
+        <li>
+            <a href="{{ path('homepage') }}">Back to home</a>
+        </li>
+    </ul>
+{% endblock %}
