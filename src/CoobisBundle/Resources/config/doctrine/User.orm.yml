@@ -17,4 +17,8 @@ CoobisBundle\Entity\User:
         password:
             type: string
             length: 255
+    oneToMany:
+        datas:
+            targetEntity: Data
+            mappedBy: user
     lifecycleCallbacks: {  }

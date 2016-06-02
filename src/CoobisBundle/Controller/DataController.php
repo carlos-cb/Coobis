@@ -125,19 +125,4 @@ class DataController extends Controller
             ->getForm()
         ;
     }
-
-    /**
-     * Lista de todas las categorias para elegir.
-     *
-     */
-    public function selectCategoryAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $categories = $em->getRepository('CoobisBundle:Category')->findAll();
-
-        return $this->render('data/selectCategory.html.twig', array(
-            'categories' => $categories,
-        ));
-    }
 }

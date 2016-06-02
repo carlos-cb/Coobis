@@ -332,4 +332,32 @@ class Data
     {
         return $this->userId;
     }
+    /**
+     * @var \CoobisBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param \CoobisBundle\Entity\User $user
+     * @return Data
+     */
+    public function setUser(\CoobisBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \CoobisBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

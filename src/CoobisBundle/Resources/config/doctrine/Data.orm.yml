@@ -48,7 +48,11 @@ CoobisBundle\Entity\Data:
             type: string
             length: 255
             column: moz_links
-        userId:
-            type: integer
-            column: user_id
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: datas
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }
