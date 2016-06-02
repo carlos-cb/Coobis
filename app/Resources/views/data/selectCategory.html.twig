@@ -6,7 +6,7 @@
 	<div class="row">
 		{% for category in categories %}
 			<div class='col-md-2'>
-				<a href='' class='btn btn-primary btn-lg' role='button'>{{ category.categoryName }}</a>
+				<a href='{{ path('data_seo_index', { 'categoryId': category.id }) }}' class='btn btn-primary btn-lg' role='button'>{{ category.categoryName }}</a>
 			</div>
 		{% endfor %}
 	</div>

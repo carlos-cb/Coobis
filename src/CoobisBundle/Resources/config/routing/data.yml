@@ -23,7 +23,12 @@ data_delete:
     defaults: { _controller: "CoobisBundle:Data:delete" }
     methods:  DELETE
 
-data_seo_index:
-    path:     /seo
+data_selectCategory:
+    path:     /selectCategory
     defaults: { _controller: "CoobisBundle:Data:selectCategory" }
+    methods:  GET
+
+data_seo_index:
+    path:     /{categoryId}/seo
+    defaults: { _controller: "CoobisBundle:Data:seoIndex" }
     methods:  GET

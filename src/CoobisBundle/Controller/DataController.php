@@ -140,4 +140,43 @@ class DataController extends Controller
              'categories' => $categories,
          ));
      }
+
+    public function seoIndexAction($categoryId)
+    {
+        $categoryName = $this->getCategoryName($categoryId);
+        $insertedUrl = $this->insertUrl($categoryName);
+
+        if($insertedUrl){
+            $moz = $this->postToMoz();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $datas = $em->getRepository('CoobisBundle:Data')->findAll();
+
+        return $this->render('data/seoIndex.html.twig', array(
+            'datas' => $datas,
+            'categoryName' => $categoryName,
+        ));
+    }
+    
+    private function getCategoryName($categoryId)
+    {
+        $category = $this->getDoctrine()
+            ->getRepository('CoobisBundle:Category')
+            ->findOneById($categoryId);
+        $categoryName = $category->getCategoryName();
+        
+        return $categoryName;
+    }
+
+    private function insertUrl($categoryName)
+    {
+
+    }
+
+    private function postToMoz()
+    {
+
+    }
 }

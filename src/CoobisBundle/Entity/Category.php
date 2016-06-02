@@ -52,4 +52,8 @@ class Category
     {
         return $this->categoryName;
     }
+
+    public function __toString() {
+        return strval($this->id);
+    }
 }
