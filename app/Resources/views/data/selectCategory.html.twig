@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Select Category</h1>
+    <h1>Category Select</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="{{ path('homepage') }}">Home</a></li>
+		<li class="active">Category Select</li>
+	</ol>
 
 	<div class="row">
 		{% for category in categories %}
@@ -10,11 +15,4 @@
 			</div>
 		{% endfor %}
 	</div>
-
-
-    <ul>
-        <li>
-            <a href="{{ path('homepage') }}">Back to home</a>
-        </li>
-    </ul>
 {% endblock %}

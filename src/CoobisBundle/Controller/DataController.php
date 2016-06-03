@@ -4,6 +4,8 @@ namespace CoobisBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Goutte\Client;
+use Symfony\Component\DomCrawler\Crawler;
 
 use CoobisBundle\Entity\Data;
 use CoobisBundle\Form\DataType;
@@ -144,10 +146,10 @@ class DataController extends Controller
     public function seoIndexAction($categoryId)
     {
         $categoryName = $this->getCategoryName($categoryId);
-        $insertedUrl = $this->insertUrl($categoryName);
+        $gotUrl = $this->gotUrl($categoryName);
 
-        if($insertedUrl){
-            $moz = $this->postToMoz();
+        if($gotUrl){
+            $moz = $this->postToMoz($gotUrl);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -156,7 +158,6 @@ class DataController extends Controller
 
         return $this->render('data/seoIndex.html.twig', array(
             'datas' => $datas,
-            'categoryName' => $categoryName,
         ));
     }
     
@@ -166,17 +167,77 @@ class DataController extends Controller
             ->getRepository('CoobisBundle:Category')
             ->findOneById($categoryId);
         $categoryName = $category->getCategoryName();
-        
+
         return $categoryName;
     }
 
-    private function insertUrl($categoryName)
+    private function gotUrl($categoryName)
     {
+        $client = new Client();
+        $crawler = $client->request('GET', 'http://www.alexa.com/topsites/category/Top/'.$categoryName.'');
 
+        $allUrlArray = $crawler->filter('p')->each(function ($node, $i) {
+            return $node->text();
+        });
+        return $allUrlArray;
     }
 
-    private function postToMoz()
+    private function postToMoz($gotUrl)
     {
+        $accessID = "mozscape-4c58d2a02d";
+        $secretKey = "fad4864da31066a0fc0580a8e536a52c";
+        $expires = time() + 300;
+        $stringToSign = $accessID."\n".$expires;
+        $binarySignature = hash_hmac('sha1', $stringToSign, $secretKey, true);
+        $urlSafeSignature = urlencode(base64_encode($binarySignature));
+        $cols = "103616137253";
+        $requestUrl = "http://lsapi.seomoz.com/linkscape/url-metrics/?Cols=".$cols."&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
 
+        $urls = array(
+            0 => $gotUrl[1],
+            1 => $gotUrl[2],
+            2 => $gotUrl[3],
+            3 => $gotUrl[4],
+            4 => $gotUrl[5],
+            5 => $gotUrl[6],
+            6 => $gotUrl[7],
+            7 => $gotUrl[8],
+            8 => $gotUrl[9],
+            9 => $gotUrl[10],
+        );
+
+        $batchedDomains = $urls;
+        $encodedDomains = json_encode($batchedDomains);
+        $options = array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POSTFIELDS     => $encodedDomains
+        );
+        $ch = curl_init($requestUrl);
+        curl_setopt_array($ch, $options);
+        $content = curl_exec($ch);
+        curl_close( $ch );
+        $contents = json_decode($content, true);
+
+        for($i=0; $i<10; $i++){
+            $arr = $contents[$i];
+            $data = new Data();
+            $data->setUrl($gotUrl[$i+1]);
+            $data->setMozTitle($arr['ut']);
+            $data->setMozUrl($arr['uu']);
+            $data->setMozExternalLinks($arr['ueid']);
+            $data->setMozRank($arr['umrp']);
+            $data->setMozSubdomainMozRank($arr['fmrp']);
+            $data->setMozHttpStatusCode($arr['us']);
+            $data->setMozPageAuthority($arr['upa']);
+            $data->setMozDomainAuthority($arr['pda']);
+            $data->setMozLinks($arr['uid']);
+            $data->setUserId('1');
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($data);
+            $em->flush();
+        }
+
+        return $arr;
     }
 }

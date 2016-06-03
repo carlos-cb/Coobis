@@ -3,59 +3,70 @@
 {% block body %}
     <h1>SEO index</h1>
 
+	<ol class="breadcrumb">
+		<li><a href="{{ path('homepage') }}">Home</a></li>
+		<li><a href="{{ path('data_selectCategory') }}">Category Select</a></li>
+		<li class="active">SEO Index</li>
+	</ol>
 
-	<table>
-		<thead>
-		<tr>
-			<th>Id</th>
-			<th>Url</th>
-			<th>Moztitle</th>
-			<th>Mozurl</th>
-			<th>Mozexternallinks</th>
-			<th>Mozrank</th>
-			<th>Mozsubdomainmozrank</th>
-			<th>Mozhttpstatuscode</th>
-			<th>Mozpageauthority</th>
-			<th>Mozdomainauthority</th>
-			<th>Mozlinks</th>
-			<th>User_id</th>
-			<th>Actions</th>
-		</tr>
-		</thead>
-		<tbody>
-		{% for datum in datas %}
-			<tr>
-				<td><a href="{{ path('data_show', { 'id': datum.id }) }}">{{ datum.id }}</a></td>
-				<td>{{ datum.url }}</td>
-				<td>{{ datum.mozTitle }}</td>
-				<td>{{ datum.mozUrl }}</td>
-				<td>{{ datum.mozExternalLinks }}</td>
-				<td>{{ datum.mozRank }}</td>
-				<td>{{ datum.mozSubdomainMozRank }}</td>
-				<td>{{ datum.mozHttpStatusCode }}</td>
-				<td>{{ datum.mozPageAuthority }}</td>
-				<td>{{ datum.mozDomainAuthority }}</td>
-				<td>{{ datum.mozLinks }}</td>
-				<td>{{ datum.user }}</td>
-				<td>
-					<ul>
-						<li>
-							<a href="{{ path('data_show', { 'id': datum.id }) }}">show</a>
-						</li>
-						<li>
-							<a href="{{ path('data_edit', { 'id': datum.id }) }}">edit</a>
-						</li>
-					</ul>
-				</td>
-			</tr>
-		{% endfor %}
-		</tbody>
-	</table>
-
+	<nav>
+		<ul class="pagination">
+			<li>
+				<a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li>
+				<a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+	{% for datum in datas %}
+		<div class="row">
+			<div class="container">
+				<ul>
+					<li>Url: {{ datum.url }}</li>
+					<li>Moztitle: {{ datum.mozTitle }}</li>
+					<li>Mozurl: {{ datum.mozUrl }}</li>
+					<li>Mozexternallinks: {{ datum.mozExternalLinks }}</li>
+					<li>Mozrank: {{ datum.mozRank }}</li>
+					<li>Mozsubdomainmozrank: {{ datum.mozSubdomainMozRank }}</li>
+					<li>Mozhttpstatuscode: {{ datum.mozHttpStatusCode }}</li>
+					<li>Mozpageauthority: {{ datum.mozPageAuthority }}</li>
+					<li>Mozdomainauthority: {{ datum.mozDomainAuthority }}</li>
+					<li>Mozlinks: {{ datum.mozLinks }}</li>
+				</ul>
+			</div>
+		</div>
+		<hr class="featurette-divider">
+	{% endfor %}
+	<nav>
+		<ul class="pagination">
+			<li>
+				<a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<li><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li>
+				<a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
 	<ul>
-		<li>
-			<a href="{{ path('data_selectCategory') }}">{{ categoryName }}</a>
-		</li>
 		<li>
 			<a href="{{ path('data_selectCategory') }}">Back to select another category</a>
 		</li>
