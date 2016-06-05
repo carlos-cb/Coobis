@@ -136,6 +136,8 @@ class DataController extends Controller
      {
          $em = $this->getDoctrine()->getManager();
 
+         $this->truncateEntity("data");
+
          $categories = $em->getRepository('CoobisBundle:Category')->findAll();
 
          return $this->render('data/selectCategory.html.twig', array(
@@ -239,5 +241,12 @@ class DataController extends Controller
         }
 
         return $arr;
+    }
+
+    private function truncateEntity($table)
+    {
+        $connection = $this->getDoctrine()->getManager()->getConnection();
+        $platform   = $connection->getDatabasePlatform();
+        $connection->executeUpdate($platform->getTruncateTableSQL($table, true /* whether to cascade */));
     }
 }
