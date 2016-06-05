@@ -9,66 +9,69 @@
 		<li class="active">SEO Index</li>
 	</ol>
 
-	<nav>
-		<ul class="pagination">
-			<li>
-				<a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li>
-				<a href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-	{% for datum in datas %}
-		<div class="row">
-			<div class="container">
-				<ul>
-					<li>Url: {{ datum.url }}</li>
-					<li>Moztitle: {{ datum.mozTitle }}</li>
-					<li>Mozurl: {{ datum.mozUrl }}</li>
-					<li>Mozexternallinks: {{ datum.mozExternalLinks }}</li>
-					<li>Mozrank: {{ datum.mozRank }}</li>
-					<li>Mozsubdomainmozrank: {{ datum.mozSubdomainMozRank }}</li>
-					<li>Mozhttpstatuscode: {{ datum.mozHttpStatusCode }}</li>
-					<li>Mozpageauthority: {{ datum.mozPageAuthority }}</li>
-					<li>Mozdomainauthority: {{ datum.mozDomainAuthority }}</li>
-					<li>Mozlinks: {{ datum.mozLinks }}</li>
-				</ul>
-			</div>
+	<div class="row">
+		<div class="col-md-3">
+
 		</div>
-		<hr class="featurette-divider">
-	{% endfor %}
-	<nav>
-		<ul class="pagination">
-			<li>
-				<a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li>
-				<a href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
-	<ul>
-		<li>
-			<a href="{{ path('data_selectCategory') }}">Back to select another category</a>
-		</li>
-	</ul>
+		<div class="col-md-7">
+			<nav>
+				<ul class="pagination">
+					<li class="disabled">
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}'>1</a></li>
+					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 2 }) }}'>2</a></li>
+					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 3 }) }}'>3</a></li>
+					<li class="disabled">
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			{% for datum in datas %}
+				<div class="row">
+					<div class="container">
+						<ul>
+							<li>Url: {{ datum.url }}</li>
+							<li>Moztitle: {{ datum.mozTitle }}</li>
+							<li>Mozurl: {{ datum.mozUrl }}</li>
+							<li>Mozexternallinks: {{ datum.mozExternalLinks }}</li>
+							<li>Mozrank: {{ datum.mozRank }}</li>
+							<li>Mozsubdomainmozrank: {{ datum.mozSubdomainMozRank }}</li>
+							<li>Mozhttpstatuscode: {{ datum.mozHttpStatusCode }}</li>
+							<li>Mozpageauthority: {{ datum.mozPageAuthority }}</li>
+							<li>Mozdomainauthority: {{ datum.mozDomainAuthority }}</li>
+							<li>Mozlinks: {{ datum.mozLinks }}</li>
+						</ul>
+					</div>
+				</div>
+				<hr class="featurette-divider">
+			{% endfor %}
+			<nav>
+				<ul class="pagination">
+					<li class="disabled">
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}'>1</a></li>
+					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 2 }) }}'>2</a></li>
+					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 3 }) }}'>3</a></li>
+					<li class="disabled">
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<ul>
+				<li>
+					<a href="{{ path('data_selectCategory') }}">Back to select another category</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 {% endblock %}

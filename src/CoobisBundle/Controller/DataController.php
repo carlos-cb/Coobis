@@ -147,19 +147,40 @@ class DataController extends Controller
 
     public function seoIndexAction($categoryId)
     {
+        $allPageNum = 3;
+        $numDataPage = 10;
         $categoryName = $this->getCategoryName($categoryId);
         $gotUrl = $this->gotUrl($categoryName);
 
         if($gotUrl){
-            $moz = $this->postToMoz($gotUrl);
+            for($i=1; $i<=$allPageNum; $i++){
+                $urlArray = $this->urlToArray($gotUrl, $i);
+                $moz = $this->postToMoz($urlArray, $i);
+            }
         }
 
         $em = $this->getDoctrine()->getManager();
 
-        $datas = $em->getRepository('CoobisBundle:Data')->findAll();
+        $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > 0 and p.id <= $numDataPage");
+        $datas = $query->getResult();
 
         return $this->render('data/seoIndex.html.twig', array(
             'datas' => $datas,
+            'categoryId' => $categoryId,
+        ));
+    }
+
+    public function seoPageAction($categoryId, $page)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > (($page-1)*10) and p.id <= ($page*10)");
+        $datas = $query->getResult();
+
+        return $this->render('data/seoIndex.html.twig', array(
+            'datas' => $datas,
+            'categoryId' => $categoryId,
         ));
     }
     
@@ -184,7 +205,7 @@ class DataController extends Controller
         return $allUrlArray;
     }
 
-    private function postToMoz($gotUrl)
+    private function postToMoz($urlArray, $page)
     {
         $accessID = "mozscape-4c58d2a02d";
         $secretKey = "fad4864da31066a0fc0580a8e536a52c";
@@ -195,20 +216,7 @@ class DataController extends Controller
         $cols = "103616137253";
         $requestUrl = "http://lsapi.seomoz.com/linkscape/url-metrics/?Cols=".$cols."&AccessID=".$accessID."&Expires=".$expires."&Signature=".$urlSafeSignature;
 
-        $urls = array(
-            0 => $gotUrl[1],
-            1 => $gotUrl[2],
-            2 => $gotUrl[3],
-            3 => $gotUrl[4],
-            4 => $gotUrl[5],
-            5 => $gotUrl[6],
-            6 => $gotUrl[7],
-            7 => $gotUrl[8],
-            8 => $gotUrl[9],
-            9 => $gotUrl[10],
-        );
-
-        $batchedDomains = $urls;
+        $batchedDomains = $urlArray;
         $encodedDomains = json_encode($batchedDomains);
         $options = array(
             CURLOPT_RETURNTRANSFER => true,
@@ -220,24 +228,46 @@ class DataController extends Controller
         curl_close( $ch );
         $contents = json_decode($content, true);
 
-        for($i=0; $i<10; $i++){
-            $arr = $contents[$i];
-            $data = new Data();
-            $data->setUrl($gotUrl[$i+1]);
-            $data->setMozTitle($arr['ut']);
-            $data->setMozUrl($arr['uu']);
-            $data->setMozExternalLinks($arr['ueid']);
-            $data->setMozRank($arr['umrp']);
-            $data->setMozSubdomainMozRank($arr['fmrp']);
-            $data->setMozHttpStatusCode($arr['us']);
-            $data->setMozPageAuthority($arr['upa']);
-            $data->setMozDomainAuthority($arr['pda']);
-            $data->setMozLinks($arr['uid']);
-            $data->setUserId('1');
+        if($page < 3){
+            for($i=0; $i<10; $i++){
+                $arr = $contents[$i];
+                $data = new Data();
+                $data->setUrl($urlArray[$i]);
+                $data->setMozTitle($arr['ut']);
+                $data->setMozUrl($arr['uu']);
+                $data->setMozExternalLinks($arr['ueid']);
+                $data->setMozRank($arr['umrp']);
+                $data->setMozSubdomainMozRank($arr['fmrp']);
+                $data->setMozHttpStatusCode($arr['us']);
+                $data->setMozPageAuthority($arr['upa']);
+                $data->setMozDomainAuthority($arr['pda']);
+                $data->setMozLinks($arr['uid']);
+                $data->setUserId('1');
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($data);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($data);
+                $em->flush();
+            }
+        }else{
+            for($i=0; $i<5; $i++){
+                $arr = $contents[$i];
+                $data = new Data();
+                $data->setUrl($urlArray[$i]);
+                $data->setMozTitle($arr['ut']);
+                $data->setMozUrl($arr['uu']);
+                $data->setMozExternalLinks($arr['ueid']);
+                $data->setMozRank($arr['umrp']);
+                $data->setMozSubdomainMozRank($arr['fmrp']);
+                $data->setMozHttpStatusCode($arr['us']);
+                $data->setMozPageAuthority($arr['upa']);
+                $data->setMozDomainAuthority($arr['pda']);
+                $data->setMozLinks($arr['uid']);
+                $data->setUserId('1');
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($data);
+                $em->flush();
+            }
         }
 
         return $arr;
@@ -249,4 +279,32 @@ class DataController extends Controller
         $platform   = $connection->getDatabasePlatform();
         $connection->executeUpdate($platform->getTruncateTableSQL($table, true /* whether to cascade */));
     }
+
+    private function urlToArray($gotUrl, $page)
+    {
+        if($page < 3){
+            $urlArray = array(
+                0 => $gotUrl[($page-1)*10+1],
+                1 => $gotUrl[($page-1)*10+2],
+                2 => $gotUrl[($page-1)*10+3],
+                3 => $gotUrl[($page-1)*10+4],
+                4 => $gotUrl[($page-1)*10+5],
+                5 => $gotUrl[($page-1)*10+6],
+                6 => $gotUrl[($page-1)*10+7],
+                7 => $gotUrl[($page-1)*10+8],
+                8 => $gotUrl[($page-1)*10+9],
+                9 => $gotUrl[($page-1)*10+10],
+            );
+        }else{
+            $urlArray = array(
+                0 => $gotUrl[($page-1)*10+1],
+                1 => $gotUrl[($page-1)*10+2],
+                2 => $gotUrl[($page-1)*10+3],
+                3 => $gotUrl[($page-1)*10+4],
+                4 => $gotUrl[($page-1)*10+5],
+            );
+        }
+        return $urlArray;
+    }
+
 }
