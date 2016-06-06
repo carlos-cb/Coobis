@@ -35,6 +35,5 @@ A Symfony project created on May 31, 2016, 10:36 pm.
    Sports
    World
 
-2. 因现阶段功能不完善，请完成一次分类选择后，清空数据库后再进行下一次分类选择。
-
-3. MOZ一次最多进行10条的API交互，function getUrl取得25条url，根据分页控制每次REQUEST的条数为10条。
+6.6更新
+整理datacontroller，返回分类选择按钮触发清空data表，添加SEOIndex的分页，每页10条信息，左侧数据筛选栏准备制作中

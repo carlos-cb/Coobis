@@ -155,7 +155,8 @@ class DataController extends Controller
         if($gotUrl){
             for($i=1; $i<=$allPageNum; $i++){
                 $urlArray = $this->urlToArray($gotUrl, $i);
-                $moz = $this->postToMoz($urlArray, $i);
+                $contents = $this->postToMoz($urlArray, $i);
+                $ok = $this->responseToSql($urlArray, $contents, $i, $allPageNum, $numDataPage);
             }
         }
 
@@ -205,7 +206,7 @@ class DataController extends Controller
         return $allUrlArray;
     }
 
-    private function postToMoz($urlArray, $page)
+    private function postToMoz($urlArray)
     {
         $accessID = "mozscape-4c58d2a02d";
         $secretKey = "fad4864da31066a0fc0580a8e536a52c";
@@ -228,49 +229,7 @@ class DataController extends Controller
         curl_close( $ch );
         $contents = json_decode($content, true);
 
-        if($page < 3){
-            for($i=0; $i<10; $i++){
-                $arr = $contents[$i];
-                $data = new Data();
-                $data->setUrl($urlArray[$i]);
-                $data->setMozTitle($arr['ut']);
-                $data->setMozUrl($arr['uu']);
-                $data->setMozExternalLinks($arr['ueid']);
-                $data->setMozRank($arr['umrp']);
-                $data->setMozSubdomainMozRank($arr['fmrp']);
-                $data->setMozHttpStatusCode($arr['us']);
-                $data->setMozPageAuthority($arr['upa']);
-                $data->setMozDomainAuthority($arr['pda']);
-                $data->setMozLinks($arr['uid']);
-                $data->setUserId('1');
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($data);
-                $em->flush();
-            }
-        }else{
-            for($i=0; $i<5; $i++){
-                $arr = $contents[$i];
-                $data = new Data();
-                $data->setUrl($urlArray[$i]);
-                $data->setMozTitle($arr['ut']);
-                $data->setMozUrl($arr['uu']);
-                $data->setMozExternalLinks($arr['ueid']);
-                $data->setMozRank($arr['umrp']);
-                $data->setMozSubdomainMozRank($arr['fmrp']);
-                $data->setMozHttpStatusCode($arr['us']);
-                $data->setMozPageAuthority($arr['upa']);
-                $data->setMozDomainAuthority($arr['pda']);
-                $data->setMozLinks($arr['uid']);
-                $data->setUserId('1');
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($data);
-                $em->flush();
-            }
-        }
-
-        return $arr;
+        return $contents;
     }
 
     private function truncateEntity($table)
@@ -305,6 +264,34 @@ class DataController extends Controller
             );
         }
         return $urlArray;
+    }
+
+    private function responseToSql($urlArray, $contents, $page, $allPageNum, $numDataPage)
+    {
+        if($page < $allPageNum){
+            $num = $numDataPage;
+        }else{
+            $num = $numDataPage/2;
+        }
+        for($i=0; $i<$num; $i++){
+            $arr = $contents[$i];
+            $data = new Data();
+            $data->setUrl($urlArray[$i]);
+            $data->setMozTitle($arr['ut']);
+            $data->setMozUrl($arr['uu']);
+            $data->setMozExternalLinks($arr['ueid']);
+            $data->setMozRank($arr['umrp']);
+            $data->setMozSubdomainMozRank($arr['fmrp']);
+            $data->setMozHttpStatusCode($arr['us']);
+            $data->setMozPageAuthority($arr['upa']);
+            $data->setMozDomainAuthority($arr['pda']);
+            $data->setMozLinks($arr['uid']);
+            $data->setUserId('1');
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($data);
+            $em->flush();
+        }
     }
 
 }
