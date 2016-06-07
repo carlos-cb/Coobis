@@ -37,3 +37,7 @@ A Symfony project created on May 31, 2016, 10:36 pm.
 
 6.6更新
 整理datacontroller，返回分类选择按钮触发清空data表，添加SEOIndex的分页，每页10条信息，左侧数据筛选栏准备制作中
+
+6.7更新
+css/js文件本地化，因seoindex页加载较慢，新增loading的div
+注意：云盘里otro中更新了web/bundle，下载更新后再pull程序。

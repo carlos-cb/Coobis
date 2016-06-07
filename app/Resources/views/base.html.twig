@@ -5,13 +5,15 @@
         <title>{% block title %}Kanlli-Coobis{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('kanlli.jpg') }}" />
-        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/coobis/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/coobis/css/loading.css') }}" />
 
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
-            <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script src="{{ asset('bundles/coobis/js/jquery-1.12.4.min.js') }}"></script>
+            <script src="{{ asset('bundles/coobis/js/bootstrap.min.js') }}"></script>
         {% endblock %}
     </body>
 </html>
