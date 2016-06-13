@@ -13,10 +13,14 @@
 		<div class="col-md-3">
 			<div class="alert alert-info">
 				<h4>Rank</h4>
-				<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+					<input id="filterNameRankDown" type="text" class="form-control" value="0" style="width:100px;">
+					---
+					<input id="filterNameRankUp" type="text" class="form-control" value="10" style="width:100px;">
 				<br><br>
-				<h4>Subdomainmozrank</h4>
-				<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+				<h4>SubdomainMozRank</h4>
+					<input id="filterSubdomainRankDown" type="text" class="form-control" value="0" style="width:100px;">
+					---
+					<input id="filterSubdomainRankUp" type="text" class="form-control" value="10" style="width:100px;">
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -39,25 +43,27 @@
 					</li>
 				</ul>
 			</nav>
-			{% for datum in datas %}
+
 				<div class="row">
-					<div class="container">
+					<div class="container" id="zong">
+						{% for datum in datas %}
 						<ul>
-							<li>Url: {{ datum.url }}</li>
-							<li>Moztitle: {{ datum.mozTitle }}</li>
-							<li>Mozurl: {{ datum.mozUrl }}</li>
-							<li>Mozexternallinks: {{ datum.mozExternalLinks }}</li>
-							<li>Mozrank: {{ datum.mozRank }}</li>
-							<li>Mozsubdomainmozrank: {{ datum.mozSubdomainMozRank }}</li>
-							<li>Mozhttpstatuscode: {{ datum.mozHttpStatusCode }}</li>
-							<li>Mozpageauthority: {{ datum.mozPageAuthority }}</li>
-							<li>Mozdomainauthority: {{ datum.mozDomainAuthority }}</li>
-							<li>Mozlinks: {{ datum.mozLinks }}</li>
+							<li id="url">Url: {{ datum.url }}</li>
+							<li id="title">Moztitle: {{ datum.mozTitle }}</li>
+							<li id="mozurl">Mozurl: {{ datum.mozUrl }}</li>
+							<li id="exlinks">Mozexternallinks: {{ datum.mozExternalLinks }}</li>
+							<li id="rank">Mozrank: {{ datum.mozRank }}</li>
+							<li id="subrank">Mozsubdomainmozrank: {{ datum.mozSubdomainMozRank }}</li>
+							<li id="status">Mozhttpstatuscode: {{ datum.mozHttpStatusCode }}</li>
+							<li id="authority">Mozpageauthority: {{ datum.mozPageAuthority }}</li>
+							<li id="mainauthority">Mozdomainauthority: {{ datum.mozDomainAuthority }}</li>
+							<li id="links">Mozlinks: {{ datum.mozLinks }}</li>
+							<hr class="featurette-divider">
 						</ul>
+						{% endfor %}
 					</div>
 				</div>
-				<hr class="featurette-divider">
-			{% endfor %}
+
 			<nav>
 				<ul class="pagination">
 					<li class="disabled">

@@ -41,3 +41,7 @@ A Symfony project created on May 31, 2016, 10:36 pm.
 6.7更新
 css/js文件本地化，因seoindex页加载较慢，新增loading的div
 注意：云盘里otro中更新了web/bundle，下载更新后再pull程序。
+
+6.13更新
+seoIndex页面添加左侧jquery数据筛选，目前为rank和subdominioRank，后续根据实际需要再添加
+---注意：在本机.gitignore中把web/bundles去除，删除本地web/bundles文件夹，再pull项目。commit时去除右边栏选项。
