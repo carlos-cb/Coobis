@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('bundles/coobis/css/loading.css') }}" />
+{% endblock %}
+
 {% block body %}
+<div class="container">
     <h1>Category Select</h1>
 
 	<ol class="breadcrumb">
@@ -29,4 +36,5 @@
 			<div class="lading"></div>
 		</div>
 	</div>
+</div>
 {% endblock %}

@@ -280,11 +280,11 @@ class DataController extends Controller
             $data->setMozTitle($arr['ut']);
             $data->setMozUrl($arr['uu']);
             $data->setMozExternalLinks($arr['ueid']);
-            $data->setMozRank($arr['umrp']);
-            $data->setMozSubdomainMozRank($arr['fmrp']);
+            $data->setMozRank(round($arr['umrp'],2));
+            $data->setMozSubdomainMozRank(round($arr['fmrp'],2));
             $data->setMozHttpStatusCode($arr['us']);
-            $data->setMozPageAuthority($arr['upa']);
-            $data->setMozDomainAuthority($arr['pda']);
+            $data->setMozPageAuthority(round($arr['upa'],2));
+            $data->setMozDomainAuthority(round($arr['pda'],2));
             $data->setMozLinks($arr['uid']);
             $data->setUserId('1');
 

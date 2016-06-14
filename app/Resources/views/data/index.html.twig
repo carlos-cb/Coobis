@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
     <h1>Data list</h1>
 
     <ol class="breadcrumb">
@@ -13,15 +14,15 @@
             <tr>
                 <th>Id</th>
                 <th>Url</th>
-                <th>Moztitle</th>
-                <th>Mozurl</th>
-                <th>Mozexternallinks</th>
-                <th>Mozrank</th>
-                <th>Mozsubdomainmozrank</th>
-                <th>Mozhttpstatuscode</th>
-                <th>Mozpageauthority</th>
-                <th>Mozdomainauthority</th>
-                <th>Mozlinks</th>
+                <th>Title</th>
+                <th>MozUrl</th>
+                <th>ExternalLinks</th>
+                <th>Rank</th>
+                <th>SubdomainRank</th>
+                <th>HttpStatus</th>
+                <th>PageAuthority</th>
+                <th>DomainAuthority</th>
+                <th>Links</th>
                 <th>User_id</th>
                 <th>Actions</th>
             </tr>
@@ -61,4 +62,5 @@
             <a href="{{ path('data_new') }}">Create a new entry</a>
         </li>
     </ul>
+</div>
 {% endblock %}

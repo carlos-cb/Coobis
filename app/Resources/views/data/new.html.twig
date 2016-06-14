@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
     <h1>Data creation</h1>
 
     {{ form_start(form) }}
@@ -13,4 +14,5 @@
             <a href="{{ path('data_index') }}">Back to the list</a>
         </li>
     </ul>
+</div>
 {% endblock %}

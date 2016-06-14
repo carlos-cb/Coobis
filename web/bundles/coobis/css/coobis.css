@@ -54,6 +54,7 @@ section{
     border-top: 12px solid #4b4b4b;
     color: #fff;
     z-index: 999;
+    clear:both;
 }
 .footer .h4{
     margin-bottom: 27px;

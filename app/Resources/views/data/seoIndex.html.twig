@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>SEO index</h1>
+	<div class="container">
+		<h1>SEO index</h1>
 
-	<ol class="breadcrumb">
-		<li><a href="{{ path('homepage') }}">Home</a></li>
-		<li><a href="{{ path('data_selectCategory') }}">Category Select</a></li>
-		<li class="active">SEO Index</li>
-	</ol>
+		<ol class="breadcrumb">
+			<li><a href="{{ path('homepage') }}">Home</a></li>
+			<li><a href="{{ path('data_selectCategory') }}">Category Select</a></li>
+			<li class="active">SEO Index</li>
+		</ol>
+	</div>
 
 	<div class="container">
 		<div class="col-md-3">
@@ -88,4 +90,9 @@
 			</ul>
 		</div>
 	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="{{ asset('bundles/coobis/js/seoIndexSearch.js') }}"></script>
 {% endblock %}
