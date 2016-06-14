@@ -3,17 +3,17 @@
 {% block body %}
 <div class="container">
     <h1>Category list</h1>
-
     <ol class="breadcrumb">
         <li><a href="{{ path('homepage') }}">Home</a></li>
         <li class="active">Category list</li>
     </ol>
-
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Categoryname</th>
+                <th>Categoryimgurl</th>
+                <th>Categorydescription</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,6 +22,8 @@
             <tr>
                 <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
                 <td>{{ category.categoryName }}</td>
+                <td>{{ category.categoryImgUrl }}</td>
+                <td>{{ category.categoryDescription }}</td>
                 <td>
                     <ul>
                         <li>

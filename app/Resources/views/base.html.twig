@@ -7,6 +7,7 @@
             <link rel="icon" type="image/x-icon" href="{{ asset('kanlli.jpg') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/coobis/css/bootstrap.min.css') }}" />
             <link rel="stylesheet" href="{{ asset('bundles/coobis/css/coobis.css') }}" />
+            <link rel="stylesheet" href="{{ asset('bundles/coobis/css/button.css') }}" />
         {% endblock %}
     </head>
     <body>
@@ -38,7 +39,9 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('bundles/coobis/js/jquery-1.12.4.min.js') }}"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
             <script src="{{ asset('bundles/coobis/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('bundles/coobis/js/coobis.js') }}"></script>
         {% endblock %}
     </body>
 </html>

@@ -16,6 +16,8 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('categoryName')
+            ->add('categoryImgUrl')
+            ->add('categoryDescription')
         ;
     }
     

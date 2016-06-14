@@ -56,4 +56,60 @@ class Category
     public function __toString() {
         return strval($this->id);
     }
+    /**
+     * @var string
+     */
+    private $categoryImgUrl;
+
+    /**
+     * @var string
+     */
+    private $categoryDescription;
+
+
+    /**
+     * Set categoryImgUrl
+     *
+     * @param string $categoryImgUrl
+     * @return Category
+     */
+    public function setCategoryImgUrl($categoryImgUrl)
+    {
+        $this->categoryImgUrl = $categoryImgUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryImgUrl
+     *
+     * @return string 
+     */
+    public function getCategoryImgUrl()
+    {
+        return $this->categoryImgUrl;
+    }
+
+    /**
+     * Set categoryDescription
+     *
+     * @param string $categoryDescription
+     * @return Category
+     */
+    public function setCategoryDescription($categoryDescription)
+    {
+        $this->categoryDescription = $categoryDescription;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryDescription
+     *
+     * @return string 
+     */
+    public function getCategoryDescription()
+    {
+        return $this->categoryDescription;
+    }
 }

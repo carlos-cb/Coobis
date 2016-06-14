@@ -14,4 +14,14 @@ CoobisBundle\Entity\Category:
             length: 255
             nullable: true
             column: category_name
+        categoryImgUrl:
+            type: string
+            length: 255
+            nullable: true
+            column: category_img_url
+        categoryDescription:
+            type: string
+            length: 255
+            nullable: true
+            column: category_description
     lifecycleCallbacks: {  }

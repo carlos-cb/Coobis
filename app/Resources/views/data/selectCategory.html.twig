@@ -17,12 +17,26 @@
 
 	<div class="row">
 		{% for category in categories %}
-			<div class='col-md-2'>
-				<a href='{{ path('data_seo_index', { 'categoryId': category.id }) }}' class='btn btn-primary btn-lg' role='button' onclick="document.getElementById('loading').style.display = 'block'">{{ category.categoryName }}</a>
+			<div class='col-sm-6 col-md-4 col-lg-3'>
+				<div class="thumbnail" style="height: 280px">
+					<a href='{{ path('data_seo_index', { 'categoryId': category.id }) }}' onclick="document.getElementById('loading').style.display = 'block'">
+						<img src="{{ category.categoryImgUrl }}" width="300" height="150">
+					</a>
+					<div class="caption">
+						<p>{{ category.categoryDescription }}</p>
+						<a href="{{ path('data_seo_index', { 'categoryId': category.id }) }}" class="button button-glow button-rounded button-caution" onclick="document.getElementById('loading').style.display = 'block'">{{ category.categoryName }}</a>
+					</div>
+				</div>
 			</div>
 		{% endfor %}
 	</div>
-
+	<div class="thething">
+		<span id="option1" class="option active">Alexa</span>
+		<div id="switch">
+			<span class="handle"></span>
+		</div>
+		<span id="option2" class="option">Google</span>
+	</div>
 	<div id="loading">
 		<div id="loader">
 			<div class="dot"></div>
