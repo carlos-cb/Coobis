@@ -1,16 +1,149 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Bienvenido a Kanlli-Coobis</h1>
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo pull-left"><img src="http://www.kanlli.com/wp-content/themes/kanlli/images/html/logo.png" title alt></a>
+            <nav class="navbar-menu pull-right clear">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a href="/">Home</a></li>
+                    <li role="presentation"><a href="#">Introducción</a></li>
+                    <li role="presentation"><a href="/data/selectCategory">SEO</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Admin <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/user">Gestionar Usuarios</a></li>
+                            <li><a href="/category">Gestionar Categorías</a></li>
+                            <li><a href="/data">Gestionar Datos</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation"><a href="/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <br>
-    <div class="row">
-        <a href="/user" class='btn btn-primary btn-lg' role="button">Gestionar Usuarios</a>
-
-        <a href="/category" class='btn btn-warning btn-lg' role="button">Gestionar Categorías</a>
-
-        <a href="/data" class='btn btn-danger btn-lg' role="button">Gestionar Datos</a>
-
-        <a href="/data/selectCategory" class='btn btn-success btn-lg' role="button">Empezar a SEO</a>
+    <div class="container">
+        <div class="grid-16">
+            <h1 class="uppercase">Estrategias de <span class="color-primary">Performance Marketing</span> construidas sobre grandes ideas.</h1>
+            <p class="claim">
+                Somos la primera agencia de <span class="color-primary">marketing de resultados</span>
+                española que sirve a grandes marcas en lugares tan nuestros como España, tan lejanos como China, tan diferentes como Rusia o Emiratos Árabes y tan competitivos como UK o EEUU.</p>
+            <p class="claim">
+                <img class="aligncenter wp-image-6916 size-full" src="http://www.kanlli.com/wp-content/uploads/2014/11/cabecera_home1.png" width="1100" height="310"
+                     srcset="http://www.kanlli.com/wp-content/uploads/2014/11/cabecera_home1.png 1100w, http://www.kanlli.com/wp-content/uploads/2014/11/cabecera_home1-300x85.png 300w,
+                     http://www.kanlli.com/wp-content/uploads/2014/11/cabecera_home1-1024x289.png 1024w" sizes="(max-width: 1100px) 100vw, 1100px"></p>
+        </div>
     </div>
-
+    <div class="container">
+        <section class="grid-16">
+            <h2 class="section-title">Introducción</h2>
+            <h3>需要对文件进行更新，但找不到原始文件？无论是在办公室还是在路上，您都可以使用 Acrobat DC 来编辑纸质或 PDF 文档。这很容易，只要试一下您就会相信。</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                         class="img-responsive">
+                    <h2>A title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
+                        <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                        <br>Ut enim ad minim veniam, quis nostrud</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                         class="img-responsive">
+                    <h2>A title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
+                        <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                        <br>Ut enim ad minim veniam, quis nostrud</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                         class="img-responsive img-rounded">
+                    <h2>A title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
+                        <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                        <br>Ut enim ad minim veniam, quis nostrud</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <section class="grid-16">
+            <h2 class="section-title">Empezar a SEO</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                         class="img-responsive">
+                    <h2>A title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
+                        <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                        <br>Ut enim ad minim veniam, quis nostrud</p>
+                    <a href="/data/selectCategory" class='btn btn-success btn-lg' role="button">Empezar a SEO</a>
+                </div>
+                <div class="col-md-4">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                         class="img-responsive">
+                    <h2>A title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
+                        <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                        <br>Ut enim ad minim veniam, quis nostrud</p>
+                    <a href="/user" class='btn btn-primary btn-lg' role="button">Gestionar Usuarios</a>
+                </div>
+                <div class="col-md-4">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png"
+                         class="img-responsive img-rounded">
+                    <h2>A title</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
+                        <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+                        <br>Ut enim ad minim veniam, quis nostrud</p>
+                    <a href="/category" class='btn btn-warning btn-lg' role="button">Gestionar Categorías</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <section class="grid-16">
+            <h2 class="section-title">Team</h2>
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+                         class="img-circle img-responsive">
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-left">John Doe</h3>
+                    <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
+                </div>
+                <div class="col-md-2">
+                    <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png"
+                         class="img-circle img-responsive">
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-left">John Doe</h3>
+                    <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="col-lg-9">
+                <ul class="no-li inline-list">
+                    <li class="footer-logo"><img src="{{ asset('kanlli.jpg') }}" width="150px" height="150px"></li>
+                    <li class="footer-logo"><img src="{{ asset('upm.jpg') }}" width="150px" height="150px"></li>
+                    <li class="footer-logo"><img src="{{ asset('miw.png') }}" width="150px" height="150px"></li>
+                    <li class="footer-logo"><img src="{{ asset('coobis.jpg') }}" width="150px" height="150px"></li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <p class="h4 S-hidden">Contacto</p>
+                <p class="S-grid-2 S-first S-last">
+                    <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> (+34)91 923 92 29</p>
+                <p class="S-grid-2 S-first S-last">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:xisijing@gmail.com">xisijing@gmail.com</a></p>
+                <p class="S-grid-2 S-first S-last"> Príncipe de Vergara 109 9º 28002 Madrid </p>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
