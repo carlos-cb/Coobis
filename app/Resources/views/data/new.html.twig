@@ -3,16 +3,15 @@
 {% block body %}
 <div class="container">
     <h1>Data creation</h1>
-
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">Home</a></li>
+        <li><a href="{{ path('data_index') }}">Data list</a></li>
+        <li class="active">Data creation</li>
+    </ol>
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input value="Create" class="button button-pill" type="submit">
+        <a href="{{ path('data_index') }}" class="button button-pill">Back to the list</a>
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('data_index') }}">Back to the list</a>
-        </li>
-    </ul>
 </div>
 {% endblock %}

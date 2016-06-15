@@ -19,12 +19,16 @@
 		{% for category in categories %}
 			<div class='col-sm-6 col-md-4 col-lg-3'>
 				<div class="thumbnail" style="height: 280px">
-					<a href='{{ path('data_seo_index', { 'categoryId': category.id }) }}' onclick="document.getElementById('loading').style.display = 'block'">
-						<img src="{{ category.categoryImgUrl }}" width="300" height="150">
-					</a>
-					<div class="caption">
+					<div class="caption" style="height: 150px">
+						<a href='{{ path('data_seo_index', { 'categoryId': category.id }) }}' onclick="document.getElementById('loading').style.display = 'block'">
+							<img src="{{ category.categoryImgUrl }}" width="300" height="150">
+						</a>
+					</div>
+					<div class="caption" style="height: 55px">
 						<p>{{ category.categoryDescription }}</p>
-						<a href="{{ path('data_seo_index', { 'categoryId': category.id }) }}" class="button button-glow button-rounded button-caution" onclick="document.getElementById('loading').style.display = 'block'">{{ category.categoryName }}</a>
+					</div>
+					<div class="caption" style="height: 75px">
+						<a href="{{ path('data_seo_index', { 'categoryId': category.id }) }}" class="button button-glow button-rounded button-highlight" onclick="document.getElementById('loading').style.display = 'block'">{{ category.categoryName }}</a>
 					</div>
 				</div>
 			</div>

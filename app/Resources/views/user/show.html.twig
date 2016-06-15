@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <h1>User</h1>
+    <div class="container">
+        <h1>User detail</h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ path('homepage') }}">Home</a></li>
+            <li><a href="{{ path('user_index') }}">User list</a></li>
+            <li class="active">User detail</li>
+        </ol>
 
-    <table>
-        <tbody>
+        <table class="table-bordered table-striped table-hover" width="400" height="150">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
@@ -18,21 +23,20 @@
                 <th>Password</th>
                 <td>{{ user.password }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-</div>
+            </tbody>
+        </table>
+        <br><br>
+        <ul>
+            <li>
+                <a href="{{ path('user_index') }}" class="button button-rounded">Back to the list</a>
+                <a href="{{ path('user_edit', { 'id': user.id }) }}" class="button button-rounded">Edit</a>
+            </li>
+            <br>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" class="button button-border button-rounded button-primary" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
 {% endblock %}

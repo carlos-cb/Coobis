@@ -2,9 +2,13 @@
 
 {% block body %}
 <div class="container">
-    <h1>Category</h1>
-
-    <table>
+    <h1>Category detail</h1>
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">Home</a></li>
+        <li><a href="{{ path('category_index') }}">Category list</a></li>
+        <li class="active">Category detail</li>
+    </ol>
+    <table class="table-bordered table-striped table-hover" width="600" height="200">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -24,17 +28,16 @@
             </tr>
         </tbody>
     </table>
-
+    <br><br>
     <ul>
         <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
+            <a href="{{ path('category_index') }}" class="button button-rounded">Back to the list</a>
+            <a href="{{ path('category_edit', { 'id': category.id }) }}" class="button button-rounded">Edit</a>
         </li>
-        <li>
-            <a href="{{ path('category_edit', { 'id': category.id }) }}">Edit</a>
-        </li>
+        <br>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="button button-border button-rounded button-primary" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

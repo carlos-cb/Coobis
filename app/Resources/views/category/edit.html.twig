@@ -3,19 +3,22 @@
 {% block body %}
 <div class="container">
     <h1>Category edit</h1>
-
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">Home</a></li>
+        <li><a href="{{ path('category_index') }}">Category list</a></li>
+        <li class="active">Category edit</li>
+    </ol>
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <br><br>
+        <input type="submit" class="button button-rounded" value="Edit" />
+        <a href="{{ path('category_index') }}" class="button button-rounded">Back to the list</a>
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-        <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+             <input type="submit" class="button button-border button-rounded button-primary" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

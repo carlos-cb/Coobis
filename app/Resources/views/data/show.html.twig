@@ -3,8 +3,12 @@
 {% block body %}
 <div class="container">
     <h1>Data</h1>
-
-    <table>
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">Home</a></li>
+        <li><a href="{{ path('data_index') }}">Data list</a></li>
+        <li class="active">Data detail</li>
+    </ol>
+    <table class="table-bordered table-striped table-hover" width="400" height="150">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -56,17 +60,16 @@
             </tr>
         </tbody>
     </table>
-
+    <br><br>
     <ul>
         <li>
-            <a href="{{ path('data_index') }}">Back to the list</a>
+            <a href="{{ path('data_index') }}" class="button button-rounded">Back to the list</a>
+            <a href="{{ path('data_edit', { 'id': datum.id }) }}" class="button button-rounded">Edit</a>
         </li>
-        <li>
-            <a href="{{ path('data_edit', { 'id': datum.id }) }}">Edit</a>
-        </li>
+        <br>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="button button-border button-rounded button-primary" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>
