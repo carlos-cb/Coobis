@@ -159,6 +159,9 @@ ul {
 img {
     vertical-align: middle;
 }
-.caption a{
-
+#intro-img img{
+    margin-bottom: 40px;
+}
+#intro-img{
+    text-align: center;
 }

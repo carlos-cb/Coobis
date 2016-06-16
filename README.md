@@ -17,7 +17,6 @@ A Symfony project created on May 31, 2016, 10:36 pm.
 添加SEOIndex、面包屑导航及程序主功能，暂时通过alexa的分类排名获取urls
 
 1. Category包含的名称（录入数据库）
-   Adult
    Arts
    Business
    Computers
@@ -33,7 +32,6 @@ A Symfony project created on May 31, 2016, 10:36 pm.
    Shopping
    Society
    Sports
-   World
 
 6.6更新
 整理datacontroller，返回分类选择按钮触发清空data表，添加SEOIndex的分页，每页10条信息，左侧数据筛选栏准备制作中
