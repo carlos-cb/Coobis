@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "symfony/security": "^3.1",
         "symfony/dom-crawler": "^3.1",
-        "fabpot/goutte": "^3.1"
+        "fabpot/goutte": "^3.1",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
