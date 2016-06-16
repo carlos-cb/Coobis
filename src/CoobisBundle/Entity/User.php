@@ -3,11 +3,12 @@
 namespace CoobisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var int
@@ -90,6 +91,7 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
         $this->datas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
