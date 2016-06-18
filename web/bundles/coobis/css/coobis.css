@@ -496,6 +496,10 @@ div[slider] > input[type=range]::-ms-tooltip {
     font-weight: 700;
     line-height: 28px;
 }
+.data-table{
+    margin-left: 40px;
+    margin-right: 20px;
+}
 
 [slider]:hover > div > [sign] {
     opacity: 1;

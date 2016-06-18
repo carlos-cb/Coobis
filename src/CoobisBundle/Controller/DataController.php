@@ -288,6 +288,7 @@ class DataController extends Controller
             $data->setMozDomainAuthority(round($arr['pda'],2));
             $data->setMozLinks($arr['uid']);
             $data->setUserId('1');
+            $data->setDescription('Las mejores noticias, curiosidades, tests, vídeos de los que todo internet está hablando, contados siempre con un toque de humor.');
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
