@@ -12,87 +12,199 @@
 	</div>
 
 	<div class="container">
-		<div class="col-md-3">
-			<div class="alert alert-info">
+		<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 shaixuan">
+			<div class="alert" style="background: #dde4e6;">
 				<h4>Rank</h4>
-					<input id="filterNameRankDown" type="text" class="form-control" value="0" style="width:100px;">
-					---
-					<input id="filterNameRankUp" type="text" class="form-control" value="10" style="width:100px;">
+				<div slider id="slider-distance">
+					<div>
+						<div inverse-left style="width:70%;"></div>
+						<div inverse-right style="width:70%;"></div>
+						<div range style="left:30%;right:0%;"></div>
+						<span thumb style="left:30%;"></span>
+						<span thumb style="left:100%;"></span>
+						<div sign style="left:30%;">
+							<span id="value">3</span>
+						</div>
+						<div sign style="left:100%;">
+							<span id="value">10</span>
+						</div>
+					</div>
+					<input id="rank-down" type="range" tabindex="0" value="3" max="10" min="0" step="1" oninput="
+					  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+					  var value=(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[1].style.width=value*10+'%';
+					  children[5].style.left=value*10+'%';
+					  children[7].style.left=value*10+'%';children[11].style.left=value*10+'%';
+					  children[11].childNodes[1].innerHTML=this.value;" />
+
+					<input id="rank-up" type="range" tabindex="0" value="10" max="10" min="0" step="1" oninput="
+					  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+					  var value=(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[3].style.width=(10-value)*10+'%';
+					  children[5].style.right=(10-value)*10+'%';
+					  children[9].style.left=value*10+'%';children[13].style.left=value*10+'%';
+					  children[13].childNodes[1].innerHTML=this.value;" />
+				</div>
 				<br><br>
 				<h4>SubdomainMozRank</h4>
-					<input id="filterSubdomainRankDown" type="text" class="form-control" value="0" style="width:100px;">
-					---
-					<input id="filterSubdomainRankUp" type="text" class="form-control" value="10" style="width:100px;">
+				<div slider id="slider-distance">
+					<div>
+						<div inverse-left style="width:70%;"></div>
+						<div inverse-right style="width:70%;"></div>
+						<div range style="left:30%;right:0%;"></div>
+						<span thumb style="left:30%;"></span>
+						<span thumb style="left:100%;"></span>
+						<div sign style="left:30%;">
+							<span id="value">3</span>
+						</div>
+						<div sign style="left:100%;">
+							<span id="value">10</span>
+						</div>
+					</div>
+					<input id="subrank-down" type="range" tabindex="0" value="3" max="10" min="0" step="1" oninput="
+					  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+					  var value=(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[1].style.width=value*10+'%';
+					  children[5].style.left=value*10+'%';
+					  children[7].style.left=value*10+'%';children[11].style.left=value*10+'%';
+					  children[11].childNodes[1].innerHTML=this.value;" />
+
+					<input id="subrank-up" type="range" tabindex="0" value="10" max="10" min="0" step="1" oninput="
+					  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+					  var value=(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(10/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[3].style.width=(10-value)*10+'%';
+					  children[5].style.right=(10-value)*10+'%';
+					  children[9].style.left=value*10+'%';children[13].style.left=value*10+'%';
+					  children[13].childNodes[1].innerHTML=this.value;" />
+				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-7">
-			<nav>
-				<ul class="pagination">
-					<li class="disabled">
-						<a href="#" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}'>1</a></li>
-					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 2 }) }}'>2</a></li>
-					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 3 }) }}'>3</a></li>
-					<li class="disabled">
-						<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-
-				<div class="row">
-					<div class="container" id="zong">
-						{% for datum in datas %}
-						<ul>
-							<li id="url">Url: {{ datum.url }}</li>
-							<li id="title">Moztitle: {{ datum.mozTitle }}</li>
-							<li id="mozurl">Mozurl: {{ datum.mozUrl }}</li>
-							<li id="exlinks">Mozexternallinks: {{ datum.mozExternalLinks }}</li>
-							<li id="rank">Mozrank: {{ datum.mozRank }}</li>
-							<li id="subrank">Mozsubdomainmozrank: {{ datum.mozSubdomainMozRank }}</li>
-							<li id="status">Mozhttpstatuscode: {{ datum.mozHttpStatusCode }}</li>
-							<li id="authority">Mozpageauthority: {{ datum.mozPageAuthority }}</li>
-							<li id="mainauthority">Mozdomainauthority: {{ datum.mozDomainAuthority }}</li>
-							<li id="links">Mozlinks: {{ datum.mozLinks }}</li>
-							<hr class="featurette-divider">
-						</ul>
-						{% endfor %}
-					</div>
+		<div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+			<div class="row">
+				<div style="text-align: right;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<ul class="pagination pagination-lg">
+						<li class="disabled">
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}'>1</a></li>
+						<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 2 }) }}'>2</a></li>
+						<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 3 }) }}'>3</a></li>
+						<li class="disabled">
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
 				</div>
-
-			<nav>
-				<ul class="pagination">
-					<li class="disabled">
-						<a href="#" aria-label="Previous">
-							<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}'>1</a></li>
-					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 2 }) }}'>2</a></li>
-					<li><a href='{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 3 }) }}'>3</a></li>
-					<li class="disabled">
-						<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+			</div>
+			<div class="container" id="zong">
+				{% for datum in datas %}
+					<div id="content" class="row">
+						<div class="posts-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<article>
+								<h3 class="title">{{ datum.url }}</h3>
+								<div class="post-content">
+									<div class="posts-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="cuadro_small autoridad_rank">
+											<div class="titulo">
+												<b>Rank</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozRank }}</b>
+											</div>
+										</div>
+										<div class="cuadro_medio ga subrank">
+											<div class="titulo">
+												<b>SubDomain</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozSubdomainMozRank }}</b>
+											</div>
+										</div>
+										<div class="cuadro_small ga pageauthority">
+											<div class="titulo">
+												<b>PageAuthority</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozPageAuthority }}</b>
+											</div>
+										</div>
+										<div class="cuadro_medio ga domainauthority">
+											<div class="titulo">
+												<b>DomainAuthority</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozDomainAuthority }}</b>
+											</div>
+										</div>
+										<div class="cuadro_small ga links">
+											<div class="titulo">
+												<b>Links</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozLinks }}</b>
+											</div>
+										</div>
+										<div class="cuadro_medio ga exlinks">
+											<div class="titulo">
+												<b>External Links</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozExternalLinks }}</b>
+											</div>
+										</div>
+										<br>
+										<div id="cuadro_otro" class="cuadro_small ga httpcode">
+											<div class="titulo">
+												<b>HttpStatus</b>
+											</div>
+											<div class="puntuacion_small">
+												<b>{{ datum.mozHttpStatusCode }}</b>
+											</div>
+										</div>
+										<div class="cuadro_small visiturl">
+											<a href='http://{{ datum.mozUrl }}' target='_blank'>
+												<div class="puntuacion_small visit">
+													<b>Visit!</b>
+												</div>
+											</a>
+										</div>
+										<div class="widget project_details">
+											<div class="details-content">
+												<span><em></em></span>
+												<span><strong>Categoría</strong><em><a href="{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}" class="button button-rounded">{{ categoryName }}</a></em></span>
+											</div>
+										</div>
+										<br><br>
+										<div class="description">
+											<b>Description :</b>
+											<p>Las mejores noticias, curiosidades, tests, vídeos de los que todo internet está hablando, contados siempre con un toque de humor.</p>
+											<br>
+										</div>
+										<br>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
 			<ul>
 				<li>
-					<a href="{{ path('data_selectCategory') }}">Back to select another category</a>
+					<a href="{{ path('data_selectCategory') }}" class="button button-rounded">Back to select another category</a>
 				</li>
 			</ul>
+			<br><br><br>
 		</div>
 	</div>
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
-
 	<script src="{{ asset('bundles/coobis/js/seoIndexSearch.js') }}"></script>
 {% endblock %}

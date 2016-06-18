@@ -28,7 +28,7 @@
 						<p>{{ category.categoryDescription }}</p>
 					</div>
 					<div class="caption" style="height: 75px">
-						<a href="{{ path('data_seo_index', { 'categoryId': category.id }) }}" class="button button-glow button-rounded button-highlight" onclick="document.getElementById('loading').style.display = 'block'">{{ category.categoryName }}</a>
+						<a href="{{ path('data_seo_index', { 'categoryId': category.id }) }}" class="button button-glow button-rounded button-highlight" onclick="document.getElementById('loading').style.display = 'block';scrollTo(0,0)">{{ category.categoryName }}</a>
 					</div>
 				</div>
 			</div>

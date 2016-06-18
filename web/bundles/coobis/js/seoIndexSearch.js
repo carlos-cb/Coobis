@@ -1,57 +1,56 @@
 		$(function(){
-			$("#filterNameRankUp").keyup(function(){
-				$('#zong').find('ul').hide();
-				var jj = $('#zong').find('ul');
+			$("#rank-up").change(function(){
+				$('#zong').find('.row').hide();
+				var jj = $('#zong').find('.row');
 				for (var i = 0; i < jj.length; i++) {
-					if(eval($(jj[i]).find('#rank').text()) < eval($('#filterNameRankUp').val()) &&
-							eval($(jj[i]).find('#rank').text()) > eval($("#filterNameRankDown").val()) &&
-							eval($(jj[i]).find('#subrank').text()) < eval($('#filterSubdomainRankUp').val()) &&
-							eval($(jj[i]).find('#subrank').text()) > eval($("#filterSubdomainRankDown").val())
+					if(eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) < eval($('#rank-up').val()) &&
+					    eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) > eval($('#rank-down').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) < eval($('#subrank-up').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) > eval($('#subrank-down').val())
 					)
 					{$(jj[i]).show();}
 				}
-
-			}).keyup();
+			}).change();
 		})
 		$(function(){
-			$("#filterNameRankDown").keyup(function(){
-				$('#zong').find('ul').hide();
-				var jj = $('#zong').find('ul');
+			$("#rank-down").change(function(){
+				$('#zong').find('.row').hide();
+				var jj = $('#zong').find('.row');
 				for (var i = 0; i < jj.length; i++) {
-					if(eval($(jj[i]).find('#rank').text()) < eval($('#filterNameRankUp').val()) &&
-							eval($(jj[i]).find('#rank').text()) > eval($("#filterNameRankDown").val()) &&
-							eval($(jj[i]).find('#subrank').text()) < eval($('#filterSubdomainRankUp').val()) &&
-							eval($(jj[i]).find('#subrank').text()) > eval($("#filterSubdomainRankDown").val())
+					if(eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) < eval($('#rank-up').val()) &&
+						eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) > eval($('#rank-down').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) < eval($('#subrank-up').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) > eval($('#subrank-down').val())
 					)
 					{$(jj[i]).show();}
 				}
-			}).keyup();
+			}).change();
 		})
 		$(function(){
-			$("#filterSubdomainRankUp").keyup(function(){
-				$('#zong').find('ul').hide();
-				var jj = $('#zong').find('ul');
+			$("#subrank-up").change(function(){
+				$('#zong').find('.row').hide();
+				var jj = $('#zong').find('.row');
 				for (var i = 0; i < jj.length; i++) {
-					if(eval($(jj[i]).find('#rank').text()) < eval($('#filterNameRankUp').val()) &&
-							eval($(jj[i]).find('#rank').text()) > eval($("#filterNameRankDown").val()) &&
-							eval($(jj[i]).find('#subrank').text()) < eval($('#filterSubdomainRankUp').val()) &&
-							eval($(jj[i]).find('#subrank').text()) > eval($("#filterSubdomainRankDown").val())
+					if(eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) < eval($('#rank-up').val()) &&
+						eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) > eval($('#rank-down').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) < eval($('#subrank-up').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) > eval($('#subrank-down').val())
 					)
 					{$(jj[i]).show();}
 				}
-			}).keyup();
+			}).change();
 		})
 		$(function(){
-			$("#filterSubdomainRankDown").keyup(function(){
-				$('#zong').find('ul').hide();
-				var jj = $('#zong').find('ul');
+			$("#subrank-down").change(function(){
+				$('#zong').find('.row').hide();
+				var jj = $('#zong').find('.row');
 				for (var i = 0; i < jj.length; i++) {
-					if(eval($(jj[i]).find('#rank').text()) < eval($('#filterNameRankUp').val()) &&
-							eval($(jj[i]).find('#rank').text()) > eval($("#filterNameRankDown").val()) &&
-							eval($(jj[i]).find('#subrank').text()) < eval($('#filterSubdomainRankUp').val()) &&
-							eval($(jj[i]).find('#subrank').text()) > eval($("#filterSubdomainRankDown").val())
+					if(eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) < eval($('#rank-up').val()) &&
+						eval($(jj[i]).find('.autoridad_rank').find('.puntuacion_small').text()) > eval($('#rank-down').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) < eval($('#subrank-up').val()) &&
+						eval($(jj[i]).find('.subrank').find('.puntuacion_small').text()) > eval($('#subrank-down').val())
 					)
 					{$(jj[i]).show();}
 				}
-			}).keyup();
+			}).change();
 		})

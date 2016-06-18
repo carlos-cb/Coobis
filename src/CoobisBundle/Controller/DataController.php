@@ -159,7 +159,6 @@ class DataController extends Controller
                 $ok = $this->responseToSql($urlArray, $contents, $i, $allPageNum, $numDataPage);
             }
         }
-
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > 0 and p.id <= $numDataPage");
@@ -168,12 +167,13 @@ class DataController extends Controller
         return $this->render('data/seoIndex.html.twig', array(
             'datas' => $datas,
             'categoryId' => $categoryId,
+            'categoryName' => $categoryName,
         ));
     }
 
     public function seoPageAction($categoryId, $page)
     {
-
+        $categoryName = $this->getCategoryName($categoryId);
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > (($page-1)*10) and p.id <= ($page*10)");
@@ -182,6 +182,7 @@ class DataController extends Controller
         return $this->render('data/seoIndex.html.twig', array(
             'datas' => $datas,
             'categoryId' => $categoryId,
+            'categoryName' => $categoryName,
         ));
     }
     

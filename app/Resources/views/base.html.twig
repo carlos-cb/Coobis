@@ -14,23 +14,23 @@
         {% block header %}
         <header class="header">
             <div class="container">
-                <a href="/" class="logo pull-left"><img src="http://www.kanlli.com/wp-content/themes/kanlli/images/html/logo.png" title alt></a>
+                <a href="{{ path('homepage') }}" class="logo pull-left"><img src="http://www.kanlli.com/wp-content/themes/kanlli/images/html/logo.png" title alt></a>
                 <nav class="navbar-menu pull-right clear">
                     <ul class="nav nav-tabs">
-                        <li role="presentation"><a href="/">Home</a></li>
+                        <li role="presentation"><a href="{{ path('homepage') }}">Home</a></li>
                         <li role="presentation"><a href="#introduction">Introduction</a></li>
-                        <li role="presentation"><a href="/data/selectCategory">SEO</a></li>
+                        <li role="presentation"><a href="{{ path('data_selectCategory') }}">SEO</a></li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Admin <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/user">User management</a></li>
-                                <li><a href="/category">Category management</a></li>
-                                <li><a href="/data">Data management</a></li>
+                                <li><a href="{{ path('user_index') }}">User management</a></li>
+                                <li><a href="{{ path('category_index') }}">Category management</a></li>
+                                <li><a href="{{ path('data_index') }}">Data management</a></li>
                             </ul>
                         </li>
-                        <li role="presentation"><a href="/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
                     </ul>
                 </nav>
             </div>
