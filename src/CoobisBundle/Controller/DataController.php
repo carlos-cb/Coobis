@@ -202,7 +202,7 @@ class DataController extends Controller
         $crawler = $client->request('GET', 'http://www.alexa.com/topsites/category/Top/'.$categoryName.'');
 
         $allUrlArray = $crawler->filter('p')->each(function ($node, $i) {
-            return $node->text();
+            return str_replace("Https://", "", $node->text());
         });
         return $allUrlArray;
     }
