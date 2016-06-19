@@ -49,3 +49,13 @@ seoIndex页面添加左侧jquery数据筛选，目前为rank和subdominioRank，
 各种view的更新。建议删除本地项目重新更新,忽略上面的更新方法。
 
 更新方法：clone->coobis.sql->otro
+
+6.18更新 （需更新coobis.sql）
+已经基本完成网站大体，欠缺计划中的主要功能=》用户管理、Google爬虫
+留下的接口：
+DataController第305行，user随数据录入数据库，并且根据user的session限制对data表进行增删改查功能。
+还需要完成的任务：
+1. login的界面，对login的判定。
+2. 用户密码的加密。
+3. dataController各方法中加入user的session判定。
+4. user、category表非admin用户的限制。

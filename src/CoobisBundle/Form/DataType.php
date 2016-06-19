@@ -26,6 +26,7 @@ class DataType extends AbstractType
             ->add('mozDomainAuthority')
             ->add('mozLinks')
             ->add('user')
+            ->add('description')
         ;
     }
     

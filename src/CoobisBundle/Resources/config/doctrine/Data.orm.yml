@@ -48,6 +48,10 @@ CoobisBundle\Entity\Data:
             type: string
             length: 255
             column: moz_links
+        description:
+            type: string
+            length: 255
+            column: description
     manyToOne:
         user:
             targetEntity: User

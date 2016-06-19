@@ -31,13 +31,13 @@
                 <div class="col-md-4">
                     <img src="{{ asset('introduction/select.jpg') }}"
                          class="img-responsive">
-                    <h2><a href="/data/selectCategory" class="button button-3d button-royal  button-rounded">Categories</a></h2>
+                    <h2><a href="{{ path('data_selectCategory') }}" class="button button-3d button-royal  button-rounded">Categories</a></h2>
                     <p>Esta interfaz ofrece 15 categorías para elegir, elige una categoria y entra la página de la lista de sites/blogs.</p>
                 </div>
                 <div class="col-md-4">
                     <img src="{{ asset('introduction/seo.png') }}"
                          class="img-responsive">
-                    <h2><a href="/data/selectCategory" class="button button-3d button-primary button-rounded">SEO</a></h2>
+                    <h2><a href="{{ path('data_selectCategory') }}" class="button button-3d button-primary button-rounded">SEO</a></h2>
                     <p>En la página de la lista de sites/blogs, una página contiene 10 websites. En la izquiera puede cambiar los parámetros de los filtros.</p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                          class="img-responsive">
                     <h2>Manage Data</h2>
                     <span class="button-wrap">
-                        <a href="http://www.bootcss.com/" class="button button-pill button-raised button-primary">Go</a>
+                        <a href="{{ path('data_index') }}" class="button button-pill button-raised button-primary">Go</a>
                     </span>
                 </div>
                 <div class="col-md-4">
@@ -60,7 +60,7 @@
                          class="img-responsive">
                     <h2>Manage User</h2>
                     <span class="button-wrap">
-                        <a href="http://www.bootcss.com/" class="button button-pill button-raised button-primary">Go</a>
+                        <a href="{{ path('user_index') }}" class="button button-pill button-raised button-primary">Go</a>
                     </span>
                 </div>
                 <div class="col-md-4">
@@ -68,7 +68,7 @@
                          class="img-responsive img-rounded">
                     <h2>Manage Category</h2>
                     <span class="button-wrap">
-                        <a href="http://www.bootcss.com/" class="button button-pill button-raised button-primary">Go</a>
+                        <a href="{{ path('category_index') }}" class="button button-pill button-raised button-primary">Go</a>
                     </span>
                 </div>
             </div>

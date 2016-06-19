@@ -8,7 +8,8 @@
         <li><a href="{{ path('homepage') }}">Home</a></li>
         <li class="active">Data list</li>
     </ol>
-
+</div>
+<div class="data-table">
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -24,6 +25,7 @@
                 <th>DomainAuthority</th>
                 <th>Links</th>
                 <th>User_id</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -42,6 +44,7 @@
                 <td>{{ datum.mozDomainAuthority }}</td>
                 <td>{{ datum.mozLinks }}</td>
                 <td>{{ datum.user }}</td>
+                <td>{{ datum.description }}</td>
                 <td>
                     <ul>
                         <li>

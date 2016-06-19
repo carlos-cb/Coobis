@@ -147,19 +147,21 @@ class DataController extends Controller
 
     public function seoIndexAction($categoryId)
     {
+        //总页数
         $allPageNum = 3;
+        //每页展示数量
         $numDataPage = 10;
         $categoryName = $this->getCategoryName($categoryId);
         $gotUrl = $this->gotUrl($categoryName);
+        $gotDescription = $this->gotDescription($categoryName);
 
-        if($gotUrl){
+        if($gotUrl && $gotDescription){
             for($i=1; $i<=$allPageNum; $i++){
                 $urlArray = $this->urlToArray($gotUrl, $i);
                 $contents = $this->postToMoz($urlArray, $i);
-                $ok = $this->responseToSql($urlArray, $contents, $i, $allPageNum, $numDataPage);
+                $ok = $this->responseToSql($urlArray, $contents, $i, $allPageNum, $numDataPage, $gotDescription);
             }
         }
-
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > 0 and p.id <= $numDataPage");
@@ -168,12 +170,13 @@ class DataController extends Controller
         return $this->render('data/seoIndex.html.twig', array(
             'datas' => $datas,
             'categoryId' => $categoryId,
+            'categoryName' => $categoryName,
         ));
     }
 
     public function seoPageAction($categoryId, $page)
     {
-
+        $categoryName = $this->getCategoryName($categoryId);
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > (($page-1)*10) and p.id <= ($page*10)");
@@ -182,6 +185,7 @@ class DataController extends Controller
         return $this->render('data/seoIndex.html.twig', array(
             'datas' => $datas,
             'categoryId' => $categoryId,
+            'categoryName' => $categoryName,
         ));
     }
     
@@ -201,11 +205,23 @@ class DataController extends Controller
         $crawler = $client->request('GET', 'http://www.alexa.com/topsites/category/Top/'.$categoryName.'');
 
         $allUrlArray = $crawler->filter('p')->each(function ($node, $i) {
-            return $node->text();
+            return str_replace("Https://", "", $node->text());
         });
         return $allUrlArray;
     }
 
+    private function gotDescription($categoryName)
+    {
+        $client = new Client();
+        $crawler = $client->request('GET', 'http://www.alexa.com/topsites/category/Top/'.$categoryName.'');
+
+        $allUrlArray = $crawler->filter('.description')->each(function ($node, $i) {
+            return str_replace("…More", "", $node->text());
+        });
+        return $allUrlArray;
+    }
+
+    //moz每次对接的array中最多只能包含10个url
     private function postToMoz($urlArray)
     {
         $accessID = "mozscape-4c58d2a02d";
@@ -266,7 +282,7 @@ class DataController extends Controller
         return $urlArray;
     }
 
-    private function responseToSql($urlArray, $contents, $page, $allPageNum, $numDataPage)
+    private function responseToSql($urlArray, $contents, $page, $allPageNum, $numDataPage, $gotDescription)
     {
         if($page < $allPageNum){
             $num = $numDataPage;
@@ -287,6 +303,7 @@ class DataController extends Controller
             $data->setMozDomainAuthority(round($arr['pda'],2));
             $data->setMozLinks($arr['uid']);
             $data->setUserId('1');
+            $data->setDescription($gotDescription[($page-1)*10 + $i]);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($data);
