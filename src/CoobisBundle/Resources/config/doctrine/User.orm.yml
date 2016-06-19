@@ -9,14 +9,14 @@ CoobisBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
-        username:
-            type: string
-            length: 255
-            nullable: true
-            unique: true
-        password:
-            type: string
-            length: 255
+        #username:
+        #   type: string
+        #    length: 255
+        #    nullable: true
+        #   unique: true
+        #password:
+        #    type: string
+        #    length: 255
     oneToMany:
         datas:
             targetEntity: Data

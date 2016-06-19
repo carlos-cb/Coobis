@@ -13,74 +13,85 @@ class User extends BaseUser
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
-    /**
-     * @var string
-     */
-    private $username;
+//    /**
+//     * @var string
+//     *
+//     */
 
-    /**
-     * @var string
-     */
-    private $password;
+    protected $username;
+//
+//
+//    /**
+//     * @var string
+//     *
+//     */
 
+    protected $password;
+//
+//
+//
+//    /**
+//     * Get id
+//     *
+//     * @return integer
+//     */
+//     public function getId()
+//      {
+//       return $this->id;
+//       }
+//
+//
+//
+//    /**
+//     * Set username
+//     *
+//     * @param string $username
+//     * @return User
+//     */
+//
+//    public function setUsername($username)
+//     {
+//        $this->username = $username;
+//
+//        return $this;
+//     }
+//
+//    /**
+//     * Get username
+//     *
+//     * @return string
+//     */
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+//    public function getUsername()
+//     {
+//        return $this->username;
+//     }
+//
+//    /**
+//     * Set password
+//     *
+//     * @param string $password
+//     * @return User
+//     */
+//    public function setPassword($password)
+//    {
+//        $this->password = $password;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get password
+//     *
+//     * @return string
+//     */
+//    public function getPassword()
+//    {
+//        return $this->password;
+//    }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
