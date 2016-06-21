@@ -191,7 +191,9 @@ class DataController extends Controller
         }
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > 0 and p.id <= $numDataPage");
+        $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.user=$user")
+                    ->setMaxResults($numDataPage)
+                    ->setFirstResult(0);
         $datas = $query->getResult();
 
         return $this->render('data/seoIndex.html.twig', array(
@@ -217,11 +219,13 @@ class DataController extends Controller
             $displayLogout = "none";
             $username = "Guest";
         }
-        
+
         $categoryName = $this->getCategoryName($categoryId);
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.id > (($page-1)*10) and p.id <= ($page*10)");
+        $query = $em->createQuery("SELECT p FROM CoobisBundle:Data p WHERE p.user=$user")
+                    ->setMaxResults(10)
+                    ->setFirstResult(($page-1)*10);
         $datas = $query->getResult();
 
         return $this->render('data/seoIndex.html.twig', array(

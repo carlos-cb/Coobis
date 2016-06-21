@@ -29,11 +29,11 @@ data_selectCategory:
     methods:  GET
 
 data_seo_index:
-    path:     /seo/{categoryId}
+    path:     /{categoryId}/seo
     defaults: { _controller: "CoobisBundle:Data:seoIndex" }
     methods:  GET
 
 data_seo_page:
-    path:     /{seo/categoryId}/{page}
+    path:     /{categoryId}/seo/{page}
     defaults: { _controller: "CoobisBundle:Data:seoPage" }
     methods:  GET
