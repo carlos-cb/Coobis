@@ -1,3 +1,6 @@
+/**
+ * Created by carlos on 2016/6/22.
+ */
 var sizeSwitch = 80;
 var switchHandle = $('#switch .handle');
 var option1 =  $('#option1');

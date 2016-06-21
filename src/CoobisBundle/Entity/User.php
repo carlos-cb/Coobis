@@ -3,27 +3,17 @@
 namespace CoobisBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var int
      */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $password;
-
+    protected $id;
 
     /**
      * Get id
@@ -36,60 +26,16 @@ class User
     }
 
     /**
-     * Set username
-     *
-     * @param string $username
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $datas;
+    protected $datas;
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        parent::__construct();
         $this->datas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
