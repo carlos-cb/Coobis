@@ -148,7 +148,7 @@ class DataController extends Controller
          
          $em = $this->getDoctrine()->getManager();
 
-         $this->truncateEntity("data");
+         $this->truncateEntity("data", $user);
 
          $categories = $em->getRepository('CoobisBundle:Category')->findAll();
 
@@ -186,7 +186,7 @@ class DataController extends Controller
             for($i=1; $i<=$allPageNum; $i++){
                 $urlArray = $this->urlToArray($gotUrl, $i);
                 $contents = $this->postToMoz($urlArray, $i);
-                $ok = $this->responseToSql($urlArray, $contents, $i, $allPageNum, $numDataPage, $gotDescription);
+                $ok = $this->responseToSql($urlArray, $contents, $i, $allPageNum, $numDataPage, $gotDescription, $user);
             }
         }
         $em = $this->getDoctrine()->getManager();
@@ -293,11 +293,25 @@ class DataController extends Controller
         return $contents;
     }
 
-    private function truncateEntity($table)
+    private function truncateEntity()
     {
-        $connection = $this->getDoctrine()->getManager()->getConnection();
-        $platform   = $connection->getDatabasePlatform();
-        $connection->executeUpdate($platform->getTruncateTableSQL($table, true /* whether to cascade */));
+        $user = $this->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $datas = $em->getRepository('CoobisBundle:Data')->findBy(
+            array('user' => $user)
+        );
+
+        foreach ($datas as $data){
+            $em->remove($data);
+            $em->flush();
+        }
+
+        //truncate all the form data.
+        //$connection = $this->getDoctrine()->getManager()->getConnection();
+        //$platform   = $connection->getDatabasePlatform();
+        //$connection->executeUpdate($platform->getTruncateTableSQL($table, true /* whether to cascade */));
     }
 
     private function urlToArray($gotUrl, $page)
@@ -327,7 +341,7 @@ class DataController extends Controller
         return $urlArray;
     }
 
-    private function responseToSql($urlArray, $contents, $page, $allPageNum, $numDataPage, $gotDescription)
+    private function responseToSql($urlArray, $contents, $page, $allPageNum, $numDataPage, $gotDescription, $user)
     {
         if($page < $allPageNum){
             $num = $numDataPage;
@@ -347,7 +361,7 @@ class DataController extends Controller
             $data->setMozPageAuthority(round($arr['upa'],2));
             $data->setMozDomainAuthority(round($arr['pda'],2));
             $data->setMozLinks($arr['uid']);
-            $data->setUserId('1');
+            $data->setUser($user);
             $data->setDescription($gotDescription[($page-1)*10 + $i]);
 
             $em = $this->getDoctrine()->getManager();

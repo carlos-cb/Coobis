@@ -46,6 +46,6 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user, role: ROLE_ADMIN }
         - { path: ^/category, role: ROLE_ADMIN }
-        - { path: ^/data, role: ROLE_ADMIN }
-        - { path: ^/selectCategory, role: IS_AUTHENTICATED }
-        - { path: ^/seo, role: IS_AUTHENTICATED }
+        - { path: ^/data, role: ROLE_USER }
+        - { path: ^/data/selectCategory, role: ROLE_USER }
+        - { path: ^/data/seo, role: ROLE_USER }
