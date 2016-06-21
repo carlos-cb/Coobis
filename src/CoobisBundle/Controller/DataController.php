@@ -134,6 +134,18 @@ class DataController extends Controller
      */
     public function selectCategoryAction()
      {
+         $user = $this->getUser();
+
+         if($user){
+             $displayLogin = "none";
+             $displayLogout = "display";
+             $username = $user->getUsername();
+         }else{
+             $displayLogin = "display";
+             $displayLogout = "none";
+             $username = "Guest";
+         }
+         
          $em = $this->getDoctrine()->getManager();
 
          $this->truncateEntity("data");
@@ -142,11 +154,26 @@ class DataController extends Controller
 
          return $this->render('data/selectCategory.html.twig', array(
              'categories' => $categories,
+             'username' => $username,
+             'displayLogin' => $displayLogin,
+             'displayLogout' => $displayLogout,
          ));
      }
 
     public function seoIndexAction($categoryId)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         //总页数
         $allPageNum = 3;
         //每页展示数量
@@ -171,11 +198,26 @@ class DataController extends Controller
             'datas' => $datas,
             'categoryId' => $categoryId,
             'categoryName' => $categoryName,
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
     public function seoPageAction($categoryId, $page)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+        
         $categoryName = $this->getCategoryName($categoryId);
         $em = $this->getDoctrine()->getManager();
 
@@ -186,6 +228,9 @@ class DataController extends Controller
             'datas' => $datas,
             'categoryId' => $categoryId,
             'categoryName' => $categoryName,
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
     
@@ -310,5 +355,4 @@ class DataController extends Controller
             $em->flush();
         }
     }
-
 }

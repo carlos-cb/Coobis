@@ -17,12 +17,11 @@
                 <a href="{{ path('homepage') }}" class="logo pull-left"><img src="http://www.kanlli.com/wp-content/themes/kanlli/images/html/logo.png" title alt></a>
                 <nav class="navbar-menu pull-right clear">
                     <ul class="nav nav-tabs">
-                        <li role="presentation"><a href="{{ path('homepage') }}">Home</a></li>
                         <li role="presentation"><a href="#introduction">Introduction</a></li>
                         <li role="presentation"><a href="{{ path('data_selectCategory') }}">SEO</a></li>
                         <li role="presentation" class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Admin <span class="caret"></span>
+                                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Manager <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ path('user_index') }}">User management</a></li>
@@ -30,7 +29,9 @@
                                 <li><a href="{{ path('data_index') }}">Data management</a></li>
                             </ul>
                         </li>
-                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+                        <li role="presentation" style="display: {{ displayLogin }}"><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login</a></li>
+                        <li role="presentation" style="display: {{ displayLogout }}"><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+                        <li role="presentation"><a href="{{ path('fos_user_profile_show') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ username }}</a></li>
                     </ul>
                 </nav>
             </div>
