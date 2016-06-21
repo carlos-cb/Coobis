@@ -59,3 +59,24 @@ DataController第305行，user随数据录入数据库，并且根据user的sess
 2. 用户密码的加密。
 3. dataController各方法中加入user的session判定。
 4. user、category表非admin用户的限制。
+
+6.21更新
+Github上切换到Fix Branch，你还在原来的branch更新（selectCategory前端，FosUserBundle登录form的前端），最后我合起来，星期四传给你
+已完成周一讨论的大部分修改，还需要问老师的问题》》》》》》
+
+1. 我们的header在base.html.twig里面，header中有对显示login还是logout的判定，现在的方法是在每个controller里面都添加判断，代码如下：
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+问题是如何更有效地解决？？？
+
+2. FosUserBundle本身不包含以admin身份对users的增删改查（也无法使用symfony自带的generate crud），现阶段只能通过cmd里的命令行进行增删改查。
+解决办法是添加SonataUserBundle还是rewrite crud我们自己重写（工作量大）？？？
