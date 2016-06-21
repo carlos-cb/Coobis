@@ -81,6 +81,74 @@
 					  children[9].style.left=value*10+'%';children[13].style.left=value*10+'%';
 					  children[13].childNodes[1].innerHTML=this.value;" />
 				</div>
+				<br><br>
+				<h4>PageAuthority</h4>
+				<div slider id="slider-distance">
+					<div>
+						<div inverse-left style="width:70%;"></div>
+						<div inverse-right style="width:70%;"></div>
+						<div range style="left:30%;right:0%;"></div>
+						<span thumb style="left:30%;"></span>
+						<span thumb style="left:100%;"></span>
+						<div sign style="left:30%;">
+							<span id="value">30</span>
+						</div>
+						<div sign style="left:100%;">
+							<span id="value">100</span>
+						</div>
+					</div>
+					<input id="pageauth-down" type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
+					  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+					  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[1].style.width=value+'%';
+					  children[5].style.left=value+'%';
+					  children[7].style.left=value+'%';children[11].style.left=value+'%';
+					  children[11].childNodes[1].innerHTML=this.value;" />
+
+					<input id="pageauth-up" type="range" tabindex="0" value="100" max="100" min="0" step="1" oninput="
+					  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+					  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[3].style.width=(100-value)+'%';
+					  children[5].style.right=(100-value)+'%';
+					  children[9].style.left=value+'%';children[13].style.left=value+'%';
+					  children[13].childNodes[1].innerHTML=this.value;" />
+				</div>
+				<br><br>
+				<h4>DomainAuthority</h4>
+				<div slider id="slider-distance">
+					<div>
+						<div inverse-left style="width:70%;"></div>
+						<div inverse-right style="width:70%;"></div>
+						<div range style="left:30%;right:0%;"></div>
+						<span thumb style="left:30%;"></span>
+						<span thumb style="left:100%;"></span>
+						<div sign style="left:30%;">
+							<span id="value">30</span>
+						</div>
+						<div sign style="left:100%;">
+							<span id="value">100</span>
+						</div>
+					</div>
+					<input id="domainAuth-down" type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
+					  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
+					  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[1].style.width=value+'%';
+					  children[5].style.left=value+'%';
+					  children[7].style.left=value+'%';children[11].style.left=value+'%';
+					  children[11].childNodes[1].innerHTML=this.value;" />
+
+					<input id="domainAuth-up" type="range" tabindex="0" value="100" max="100" min="0" step="1" oninput="
+					  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
+					  var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+					  var children = this.parentNode.childNodes[1].childNodes;
+					  children[3].style.width=(100-value)+'%';
+					  children[5].style.right=(100-value)+'%';
+					  children[9].style.left=value+'%';children[13].style.left=value+'%';
+					  children[13].childNodes[1].innerHTML=this.value;" />
+				</div>
 			</div>
 		</div>
 		<div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
@@ -110,7 +178,10 @@
 							<article>
 								<h3 class="title">{{ datum.url }}</h3>
 								<div class="post-content">
-									<div class="posts-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="posts-block col-lg-3 col-md-3 col-sm-3 col-xs-12">
+										<div class="round-button"><div class="round-button-circle"><a href="http://example.com" class="round-button">Visit!!</a></div></div>
+									</div>
+									<div class="posts-block col-lg-9 col-md-9 col-sm-9 col-xs-12">
 										<div class="cuadro_small autoridad_rank">
 											<div class="titulo">
 												<b>Rank</b>
@@ -143,6 +214,7 @@
 												<b>{{ datum.mozDomainAuthority }}</b>
 											</div>
 										</div>
+										<br>
 										<div class="cuadro_small ga links">
 											<div class="titulo">
 												<b>Links</b>
@@ -159,7 +231,6 @@
 												<b>{{ datum.mozExternalLinks }}</b>
 											</div>
 										</div>
-										<br>
 										<div id="cuadro_otro" class="cuadro_small ga httpcode">
 											<div class="titulo">
 												<b>HttpStatus</b>
@@ -168,27 +239,20 @@
 												<b>{{ datum.mozHttpStatusCode }}</b>
 											</div>
 										</div>
-										<div class="cuadro_small visiturl">
-											<a href='http://{{ datum.mozUrl }}' target='_blank'>
-												<div class="puntuacion_small visit">
-													<b>Visit!</b>
-												</div>
-											</a>
+									</div>
+									<div class="widget project_details">
+										<div class="details-content">
+											<span><em></em></span>
+											<span><strong>Categoría</strong><em><a href="{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}" class="button button-rounded">{{ categoryName }}</a></em></span>
 										</div>
-										<div class="widget project_details">
-											<div class="details-content">
-												<span><em></em></span>
-												<span><strong>Categoría</strong><em><a href="{{ path('data_seo_page', { 'categoryId': categoryId, 'page': 1 }) }}" class="button button-rounded">{{ categoryName }}</a></em></span>
-											</div>
-										</div>
-										<br><br>
-										<div class="description">
-											<b>Description :</b>
-											<p>{{ datum.description }}</p>
-											<br>
-										</div>
+									</div>
+									<br><br><br>
+									<div class="description">
+										<b>Description :</b>
+										<p>{{ datum.description }}</p>
 										<br>
 									</div>
+									<br>
 								</div>
 							</article>
 						</div>
