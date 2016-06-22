@@ -20,12 +20,12 @@ class UserController extends Controller
      */
     public function indexAction()
     {
-        $user = $this->getUser();
+        $userSession = $this->getUser();
 
-        if($user){
+        if($userSession){
             $displayLogin = "none";
             $displayLogout = "display";
-            $username = $user->getUsername();
+            $username = $userSession->getUsername();
         }else{
             $displayLogin = "display";
             $displayLogout = "none";
@@ -50,12 +50,12 @@ class UserController extends Controller
      */
     public function newAction(Request $request)
     {
-        $user = $this->getUser();
+        $userSession = $this->getUser();
 
-        if($user){
+        if($userSession){
             $displayLogin = "none";
             $displayLogout = "display";
-            $username = $user->getUsername();
+            $username = $userSession->getUsername();
         }else{
             $displayLogin = "display";
             $displayLogout = "none";
@@ -89,12 +89,12 @@ class UserController extends Controller
      */
     public function showAction(User $user)
     {
-        $user = $this->getUser();
+        $userSession = $this->getUser();
 
-        if($user){
+        if($userSession){
             $displayLogin = "none";
             $displayLogout = "display";
-            $username = $user->getUsername();
+            $username = $userSession->getUsername();
         }else{
             $displayLogin = "display";
             $displayLogout = "none";
@@ -118,12 +118,12 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $user = $this->getUser();
+        $userSession = $this->getUser();
 
-        if($user){
+        if($userSession){
             $displayLogin = "none";
             $displayLogout = "display";
-            $username = $user->getUsername();
+            $username = $userSession->getUsername();
         }else{
             $displayLogin = "display";
             $displayLogout = "none";
@@ -135,9 +135,12 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $userManager = $this->get('fos_user.user_manager');
+            /* @var $userManager \FOS\UserBundle\Doctrine\UserManager */
+            $userManager->updateUser($user);
+            //$em = $this->getDoctrine()->getManager();
+            //$em->persist($user);
+            //$em->flush();
 
             return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
         }
