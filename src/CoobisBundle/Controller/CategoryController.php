@@ -20,12 +20,27 @@ class CategoryController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('CoobisBundle:Category')->findAll();
 
         return $this->render('category/index.html.twig', array(
             'categories' => $categories,
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -35,6 +50,18 @@ class CategoryController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $category = new Category();
         $form = $this->createForm('CoobisBundle\Form\CategoryType', $category);
         $form->handleRequest($request);
@@ -50,6 +77,9 @@ class CategoryController extends Controller
         return $this->render('category/new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -59,11 +89,26 @@ class CategoryController extends Controller
      */
     public function showAction(Category $category)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $deleteForm = $this->createDeleteForm($category);
 
         return $this->render('category/show.html.twig', array(
             'category' => $category,
             'delete_form' => $deleteForm->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -73,6 +118,18 @@ class CategoryController extends Controller
      */
     public function editAction(Request $request, Category $category)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+        
         $deleteForm = $this->createDeleteForm($category);
         $editForm = $this->createForm('CoobisBundle\Form\CategoryType', $category);
         $editForm->handleRequest($request);
@@ -89,6 +146,9 @@ class CategoryController extends Controller
             'category' => $category,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 

@@ -20,12 +20,27 @@ class UserController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('CoobisBundle:User')->findAll();
 
         return $this->render('user/index.html.twig', array(
             'users' => $users,
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -35,6 +50,18 @@ class UserController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $user = new User();
         $form = $this->createForm('CoobisBundle\Form\UserType', $user);
         $form->handleRequest($request);
@@ -50,6 +77,9 @@ class UserController extends Controller
         return $this->render('user/new.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -59,11 +89,26 @@ class UserController extends Controller
      */
     public function showAction(User $user)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $deleteForm = $this->createDeleteForm($user);
 
         return $this->render('user/show.html.twig', array(
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -73,6 +118,18 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+        
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('CoobisBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
@@ -89,6 +146,9 @@ class UserController extends Controller
             'user' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 

@@ -22,12 +22,27 @@ class DataController extends Controller
      */
     public function indexAction()
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $datas = $em->getRepository('CoobisBundle:Data')->findAll();
 
         return $this->render('data/index.html.twig', array(
             'datas' => $datas,
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -37,6 +52,18 @@ class DataController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+
         $datum = new Data();
         $form = $this->createForm('CoobisBundle\Form\DataType', $datum);
         $form->handleRequest($request);
@@ -52,6 +79,9 @@ class DataController extends Controller
         return $this->render('data/new.html.twig', array(
             'datum' => $datum,
             'form' => $form->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -61,11 +91,26 @@ class DataController extends Controller
      */
     public function showAction(Data $datum)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+        
         $deleteForm = $this->createDeleteForm($datum);
 
         return $this->render('data/show.html.twig', array(
             'datum' => $datum,
             'delete_form' => $deleteForm->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
@@ -75,6 +120,18 @@ class DataController extends Controller
      */
     public function editAction(Request $request, Data $datum)
     {
+        $user = $this->getUser();
+
+        if($user){
+            $displayLogin = "none";
+            $displayLogout = "display";
+            $username = $user->getUsername();
+        }else{
+            $displayLogin = "display";
+            $displayLogout = "none";
+            $username = "Guest";
+        }
+        
         $deleteForm = $this->createDeleteForm($datum);
         $editForm = $this->createForm('CoobisBundle\Form\DataType', $datum);
         $editForm->handleRequest($request);
@@ -91,6 +148,9 @@ class DataController extends Controller
             'datum' => $datum,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'username' => $username,
+            'displayLogin' => $displayLogin,
+            'displayLogout' => $displayLogout,
         ));
     }
 
