@@ -6,11 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CategoryControllerTest extends WebTestCase
 {
-    /*
+
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
         $client = static::createClient();
+
+        //作为superadmin登录系统
+        $this->loginAsAdmin($client);
 
         // Create a new entry in the database
         $crawler = $client->request('GET', '/category/');
@@ -19,8 +22,10 @@ class CategoryControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'coobisbundle_category[field_name]'  => 'Test',
-            // ... other fields to fill
+            'coobisbundle_category[category_name]'  => 'Test',
+            'coobisbundle_category[category_img_url]'  => 'Test_url',
+            'coobisbundle_category[category_description]'  => 'Test_description',
+
         ));
 
         $client->submit($form);
@@ -32,9 +37,10 @@ class CategoryControllerTest extends WebTestCase
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
-        $form = $crawler->selectButton('Update')->form(array(
-            'coobisbundle_category[field_name]'  => 'Foo',
-            // ... other fields to fill
+        $form = $crawler->selectButton('Edit')->form(array(
+            'coobisbundle_category[category_name]'  => 'Foo',
+            'coobisbundle_category[category_img_url]'  => 'Foo_url',
+            'coobisbundle_category[category_description]'  => 'Foo_description',
         ));
 
         $client->submit($form);
@@ -51,5 +57,16 @@ class CategoryControllerTest extends WebTestCase
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
     }
 
-    */
+    private function loginAsAdmin($client)
+    {
+        $crawler = $client->request('GET', '/login');
+
+        // Fill in the form and submit it
+        $form = $crawler->selectButton('security.login.submit')->form();
+        $form['username'] = 'admin';
+        $form['password'] = 'kanlli';
+
+        $client->submit($form);
+    }
+
 }
