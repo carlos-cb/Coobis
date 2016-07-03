@@ -359,7 +359,7 @@ class DataController extends Controller
 
     private function truncateEntity()
     {
-        $user = $this->getUser()->getId();
+        $user = $this->getUser();
 
         $em = $this->getDoctrine()->getManager();
 
